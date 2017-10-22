@@ -31,7 +31,8 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <form class="form-horizontal" action="{{route('admin.additems')}}" method="post">
+                    <form class="form-horizontal" action="{{route('admin.additems')}}" method="post"
+                          enctype="multipart/form-data">
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="proid">Product ID:</label>
                             <div class="col-sm-2">
@@ -91,6 +92,18 @@
                                     <option value="Available" selected>Available</option>
                                     <option value="Not Available">Not Available</option>
                                 </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="image">Images (Max 3 images)</label>
+                            <div class="col-sm-6">
+                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                    <span class="btn btn-default btn-file">
+                                        <span>Choose file</span>
+                                        <input name="img[]" type="file" multiple/>
+                                    </span>
+                                    <span class="fileinput-filename"></span>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">

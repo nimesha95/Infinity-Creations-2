@@ -42,7 +42,17 @@ class AdminController extends Controller
 
     public function postAdditems(Request $request)
     {
-        //dd($request);
+        $count = 0;
+        //added "image not avialable" link to the imgArr
+        $imgArr = ["http://res.cloudinary.com/docp8wv1x/image/upload/v1508704084/dprnfntaojeelbyvakmn.jpg", "http://res.cloudinary.com/docp8wv1x/image/upload/v1508704084/dprnfntaojeelbyvakmn.jpg", "http://res.cloudinary.com/docp8wv1x/image/upload/v1508704084/dprnfntaojeelbyvakmn.jpg"];
+        if ($request->hasFile('img')) {
+            foreach ($request->img as $image) {
+                \Cloudder::upload($image);      //uploading image to cloudinary
+                $c = \Cloudder::getResult();      //getting the result array
+                $imgArr[$count] = $c['url'];
+                $count = $count + 1;
+            }
+        }
 
         $proid = $request->input('productid');
         $name = $request->input('name');
@@ -52,19 +62,18 @@ class AdminController extends Controller
         $unit = $request->input('unit');
         $availability = $request->input('availability');
         $description = $request->input('description');
-        /*
-        $image = $request->input('pri_image');
-        $img1 = $request->input('img1');
-        $img2 = $request->input('img2');
-        $img3 = $request->input('img3');
-        $img4 = $request->input('img4');
-        */
 
-        DB::insert("insert into product (pro_id,name,type,price,pricing_unit,availability,discount,item_description) values (?,?,?,?,?,?,?,?)",
-            [$proid, $name, $type, $price, $unit, $availability, $discount, $description]);
+        $img1 = $imgArr[0];
+        $img2 = $imgArr[1];
+        $img3 = $imgArr[2];
+
+
+        DB::insert("insert into product (pro_id,name,type,price,pricing_unit,availability,discount,item_description,img1,img2,img3) values (?,?,?,?,?,?,?,?,?,?,?)",
+            [$proid, $name, $type, $price, $unit, $availability, $discount, $description, $img1, $img2, $img3]);
 
         return redirect(route('admin.additems'))->with('message', 'Item Added Succesfully');
         //dd($item);
+
     }
 
     public function postRegUser(Request $request)

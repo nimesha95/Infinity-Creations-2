@@ -178,7 +178,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
-
+        'JD\Cloudder\CloudderServiceProvider'
     ],
 
     /*
@@ -228,6 +228,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
+        'Cloudder' => 'JD\Cloudder\Facades\Cloudder',
     ],
 
 ];
