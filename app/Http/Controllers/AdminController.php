@@ -21,6 +21,12 @@ class AdminController extends Controller
         return view('admin.reports');
     }
 
+    public function getUserHistory()
+    {
+        $userQry = DB::select("select name,email,role_name,created_at,last_login from users");
+        return view('admin.login_history', ['userQry' => $userQry]);
+    }
+
     public function getAdditems()
     {
         $type = session('type');
@@ -84,12 +90,12 @@ class AdminController extends Controller
 
     public function postRegUser(Request $request)
     {
-
+        //dd($request);
         session(['AdminRegUser' => 1]);
         $this->validate($request, [
             'name' => 'required',
             'email' => 'email | required | unique:users',
-            'password' => 'required | min:4',
+            'pwd' => 'required | min:4',
             'role' => 'required'
         ]);
 
@@ -97,13 +103,25 @@ class AdminController extends Controller
         $user = new User([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
-            'password' => bcrypt($request->input('password')),
+            'password' => bcrypt($request->input('pwd')),
             'role' => $request->input('role'),
             'role_name' => $this->getRoleName($request->input('role')),
         ]);
         $user->save();
-        return redirect()->back();
+        return redirect()->back()->with('message', 'User Added Succesfully');
+    }
 
+    public function postRemoveUser(Request $request)
+    {
+        $email = $request->input('email');
+        $result = DB::select("select * from users WHERE email='$email'");
+        //dd(sizeof($result));
+        if (sizeof($result) > 0) {
+            DB::delete("delete from users WHERE email='$email'");
+            return redirect()->back()->with('message', 'User Removed Succesfully');
+        } else {
+            return redirect()->back()->with('Err_message', 'User Removal Failed');
+        }
     }
 
     private function getRoleName($var)

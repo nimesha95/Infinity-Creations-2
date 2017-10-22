@@ -102,7 +102,6 @@ Route::group(['prefix' => 'user'], function () {
         ]);
 
     });
-
 });
 
 Route::group(['middleware' => ['auth', 'admin']], function () {
@@ -135,6 +134,16 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
         Route::post('/signup', [
             'uses' => 'AdminController@postRegUser',
             'as' => 'admin.reguser'
+        ]);
+
+        Route::post('/remove_user', [
+            'uses' => 'AdminController@postRemoveUser',
+            'as' => 'admin.rmvuser'
+        ]);
+
+        Route::get('/user_history', [
+            'uses' => 'AdminController@getUserHistory',
+            'as' => 'admin.getUserHistory'
         ]);
 
     });

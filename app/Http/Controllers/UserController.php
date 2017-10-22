@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\User;
 use Auth;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use \Cart as Cart;
 
 class UserController extends Controller
@@ -54,7 +55,9 @@ class UserController extends Controller
         if (Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password')])) {
             $type = Auth::user()->role;
             //dd($type);
-
+            DB::table('users')->where('email', $request->input('email'))->update(array(
+                'last_login' => Carbon::now()->toDateTimeString(),      //saving current timestamp as last login activity
+            ));
             switch ($type) {
                 case 0: //0 is admin
                     return redirect()->route('admin.index');
@@ -129,8 +132,11 @@ class UserController extends Controller
 
     public function getLogout()
     {
-        Cart::store(Auth::user()->email);       //saving the cart into a database
-        Cart::destroy();        //destroying the current cart object
+        if (Auth::user()->role == 1) {
+            Cart::store(Auth::user()->email);       //saving the cart into a database
+            Cart::destroy();        //destroying the current cart object
+        }
+
         Auth::logout();
         return redirect()->back();
     }
