@@ -16,13 +16,7 @@
             <div class="row">
                 <h2>Add items</h2>
             </div>
-            <div class="row">
-                @if(session()->has('message'))
-                    <div class="alert alert-success">
-                        {{ session()->get('message') }}
-                    </div>
-                @endif
-            </div>
+
             @if(session()->has('type'))
                 <div class="row">
                     <div class="col-md-12">

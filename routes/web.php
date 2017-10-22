@@ -16,17 +16,6 @@ Route::get('/', [
     'as' => 'product.index'
 ]);
 
-Route::get('/send', [
-    'uses' => 'EmailController@send',
-    'as' => 'user.sendMail'
-]);
-
-Route::get('/send_test', function () {
-    Mail::raw('Sending emails with Mailgun and Laravel is easy!', function ($message) {
-        $message->to('nimesha95@live.com');
-    });
-});
-
 Route::get('/desktops/{type}/{brand?}', [
     'uses' => 'ProductController@getDesktops',
     'as' => 'product.product'
@@ -112,12 +101,6 @@ Route::group(['prefix' => 'user'], function () {
             'as' => 'user.editinfo'
         ]);
 
-        Route::get('/send_test', function () {
-            Mail::raw('Sending emails with Mailgun and Laravel is easy!', function ($message) {
-                $message->to('nimesha95@live.com');
-            });
-        });
-
     });
 
 });
@@ -158,25 +141,9 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 
 });
 
-Route::group(['middleware' => ['auth', 'stockmanager']], function () {
-    Route::get('/stockmanager', [
-        'uses' => 'StockManagerController@getIndex',
-        'as' => 'stockmanager.index',
-    ]);
-});
-
 Route::group(['middleware' => ['auth', 'cashier']], function () {
     Route::get('/cashier', [
         'uses' => 'CashierController@getIndex',
         'as' => 'cashier.index',
     ]);
-});
-
-Route::group(['middleware' => ['auth', 'technician']], function () {
-    Route::get('/technician', [
-        'uses' => 'TechnicianController@getIndex',
-        'as' => 'technician.index',
-    ]);
-
-
 });

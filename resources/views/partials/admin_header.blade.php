@@ -9,7 +9,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{route('admin.index')}}">PC LIFE ONLINE</a>
+            <a class="navbar-brand" href="{{route('admin.index')}}">Infinity Creations</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -32,21 +32,12 @@
 
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false">Stock <span class="caret"></span></a>
+                       aria-expanded="false">Shop <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#" data-toggle="modal" data-target="#AddSelectModal">Add Item</a></li>
                         <li><a href="#">Edit items</a></li>
                         <li><a href="#">Remove items</a></li>
-                        <li><a href="#">Update Stock</a></li>
-                        <li><a href="#">Availability</a></li>
-                    </ul>
-                </li>
-
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false">Sales <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Sales History</a></li>
+                        <li><a href="#">Change Availability</a></li>
                     </ul>
                 </li>
 
@@ -54,8 +45,18 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">Orders <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Pre Orders</a></li>
-                        <li><a href="#">ReOrders</a></li>
+                        <li><a href="#">Current Orders</a></li>
+                        <li><a href="#">Order History</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Office <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Track Expenses</a></li>
+                        <li><a href="#">Track Revenues</a></li>
+                        <li><a href="#">Calculate Salary</a></li>
                     </ul>
                 </li>
 
@@ -63,16 +64,12 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">Reports <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{route('admin.reports')}}">Report Gen #Add something</a></li>
+                        <li><a href="#">Current Day</a></li>
+                        <li><a href="#">This Month</a></li>
                     </ul>
                 </li>
             </ul>
-            <form class="navbar-form navbar-left">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search">
-                </div>
-                <button type="submit" class="btn btn-default">Search</button>
-            </form>
+
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">
                         <i class="fa fa-shopping-cart" aria-hidden="true"></i> Notification icon
