@@ -151,6 +151,11 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
             'as' => 'admin.geteditItem'
         ]);
 
+        Route::post('/edit_item', [
+            'uses' => 'AdminController@postRemoveItem',
+            'as' => 'admin.RemoveItem'
+        ]);
+
         Route::get('/change_available', [
             'uses' => 'AdminController@getAvailability',
             'as' => 'admin.getAvailability'

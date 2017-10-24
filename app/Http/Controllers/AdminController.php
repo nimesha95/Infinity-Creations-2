@@ -116,6 +116,18 @@ class AdminController extends Controller
 
     }
 
+    public function postRemoveItem(Request $request)
+    {
+        //dd($request);
+        session(['AdminRemoveItem' => 1]);
+        $this->validate($request, [
+            'pro_id' => 'required | is_proid | min:6 | max:6',
+        ]);
+        $pro_id = $request->input('pro_id');
+        DB::delete("delete from product WHERE pro_id='$pro_id'");
+        return redirect(route('admin.index'))->with('message', 'Item Removed Succesfully');
+    }
+
     public function postRegUser(Request $request)
     {
         //dd($request);
