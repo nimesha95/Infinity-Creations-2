@@ -1,10 +1,8 @@
-## PC-Life Online
-This is the web based solution we're developing to automate the process in PC-Life (pvt) Ltd; A Computer Solution firm
+## Infinity Creations
+This is the web based solution we're developing to handle the process in Infinity Creations PVT Ltd; A new Printing firm
 - Web Store
 - Admin Panel
 - Cashier Panel
-- Stock Manager Panel
-- Service Technician Panel
 - **[Android App for the Delivary Person](https://github.com/nimesha95/Group32)**
 
 <b>Backend :</b> Laravel
