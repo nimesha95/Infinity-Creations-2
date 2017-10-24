@@ -27,6 +27,46 @@ class AdminController extends Controller
         return view('admin.login_history', ['userQry' => $userQry]);
     }
 
+    public function getAvailability()
+    {
+        $productQry = DB::select("select * from product");
+        return view('admin.change_available', ['items' => $productQry]);
+    }
+
+    public function postEditItem(Request $request)
+    {
+        //dd($request);
+        $proid = $request->input('productid');
+        $name = $request->input('name');
+        $price = $request->input('price');
+        $discount = $request->input('discount');
+        $availability = $request->input('availability');
+        $description = $request->input('description');
+
+        DB::table('product')->where('pro_id', $proid)->update(array(
+            'name' => $name,
+            'price' => $price,
+            'discount' => $discount,
+            'availability' => $availability,
+            'item_description' => $description,
+        ));
+
+        return redirect(route('admin.index'))->with('message', 'Item Edited Succesfully');
+    }
+
+    public function getEditItem(Request $request)
+    {
+        // dd($request);
+        session(['AdminEditItem' => 1]);
+        $this->validate($request, [
+            'pro_id' => 'required | is_proid | min:6 | max:6',
+        ]);
+        $pro_id = $request->input('pro_id');
+        $productQry = DB::select("select * from product WHERE pro_id='$pro_id'");
+        // dd($productQry);
+        return view('admin.edit_item', ['productQry' => $productQry]);
+    }
+
     public function getAdditems()
     {
         $lastID = 0;

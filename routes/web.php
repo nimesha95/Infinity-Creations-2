@@ -141,6 +141,21 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
             'as' => 'admin.getUserHistory'
         ]);
 
+        Route::post('/edit_item', [
+            'uses' => 'AdminController@postEditItem',
+            'as' => 'admin.editItem'
+        ]);
+
+        Route::get('/edit_item', [
+            'uses' => 'AdminController@getEditItem',
+            'as' => 'admin.geteditItem'
+        ]);
+
+        Route::get('/change_available', [
+            'uses' => 'AdminController@getAvailability',
+            'as' => 'admin.getAvailability'
+        ]);
+
     });
 
 });

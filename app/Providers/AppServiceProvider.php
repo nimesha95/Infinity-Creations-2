@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Validator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +14,17 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Validator::extend('is_proid', function ($attribute, $value, $parameters, $validator) {
+            if (!empty($value) && substr($value, 0, 2) == "IC") {
+                $rest = substr($value, 2);
+                if (is_numeric($rest)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            return false;
+        });
     }
 
     /**
