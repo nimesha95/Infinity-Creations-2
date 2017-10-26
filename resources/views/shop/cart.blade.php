@@ -10,148 +10,136 @@
 
 @section('content')
 
-    <div class=" container">
-        <div class="row">
-            <div class="col-xs-3 col-md-4"></div>
-            <div class="col-xs-6 col-md-4">
-                <h2>Your Cart</h2>
-            </div>
-            <div class="col-xs-3 col-md-4"></div>
-        </div>
+    <div id="all">
 
-        @if(Cart::count()<1)
-            <div class="row">
-                <div class="col-xs-3 col-md-4"></div>
-                <div class="col-xs-6 col-md-4">
-                    <p>Your Cart is empty</p>
-                </div>
-                <div class="col-xs-3 col-md-4"></div>
-            </div>
-        @else
-            <div class="row">
-                <div class="col-md-3 col-xs-4"><b>Product</b></div>
-                <div class="col-md-2 col-xs-3"><b>Qty</b></div>
-                <div class="col-md-2 col-xs-2"><b>Price</b></div>
-                <div class="col-md-2 col-xs-2"><b>Total</b></div>
-            </div>
-            @foreach(Cart::content() as $row)
-                <div class="row">
-                    <div class="col-md-3 col-xs-4">{{$row->name}}</div>
-                    <div class="col-md-2 col-xs-3">
-                        {{$row->qty}}
-                        <a href="{{route('product.RemoveFromCart' , ['count'=>1,'rowid'=> $row->rowId,'curcount'=>$row->qty])}}"
-                           class="btn btn-xs btn-danger pull-right" role="button">
-                            <span class="glyphicon glyphicon-minus"></span>&nbsp;
-                        </a>
-                        <a href="{{route('product.PlusOneCart' , ['rowid'=> $row->rowId,'curcount'=>$row->qty])}}"
-                           class="btn btn-xs btn-success pull-right" role="button">
-                            <span class="glyphicon glyphicon-plus "></span>&nbsp;
-                            <!--span need some non char to fill the space-->
-                        </a>
-                    </div>
-                    <div class="col-md-2 col-xs-2">{{$row->price}}</div>
-                    <div class="col-md-2 col-xs-2">{{$row->total}}</div>
-                    <div class="col-md-1 col-xs-1">
-                        <a href="{{route('product.RemoveFromCart' , ['count'=>'all','rowid'=> $row->rowId])}}"
-                           class="btn btn-xs btn-danger" role="button">
-                            <span class="glyphicon glyphicon-remove"></span>&nbsp;
-                        </a>
-                    </div>
-                </div>
-            @endforeach
+        <div id="content">
+            <div class="container">
 
-            <div class="row">
-                <div class="col-md-3 col-xs-4"></div>
-                <div class="col-md-2 col-xs-3"></div>
-                <div class="col-md-2 col-xs-2"><b>SubTotal</b></div>
-                <div class="col-md-2 col-xs-2">{{Cart::subtotal()}}</div>
-            </div>
 
-            <div class="row" style="margin-top: 20px">
-                <div class="col-md-3 col-xs-4"></div>
-                <div class="col-md-2 col-xs-3"></div>
-                <div class="col-md-2 col-xs-2"></div>
-                <div class="col-md-2 col-xs-2">
-                    <a href="#" class="btn btn-default btn-success" data-toggle="modal" data-target="#SelectPayment"
-                       role="button">Checkout</a>
-                </div>
-            </div>
+                <div class="col-md-9" id="basket">
 
-        @endif
+                    <div class="box">
 
-        <div class="modal fade" id="SelectPayment" role="dialog">
-            <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">CheckOut</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form class="form-horizontal" method="post" action="{{route('admin.reguser')}}">
-                            <div class="form-group">
-                                <label class="control-label col-sm-4" for="Payment">Select Payment Method:</label>
-                                <div class="col-sm-6">
-                                    <div class="radio">
-                                        <label><input type="radio" name="payment">EzCash</label>
-                                    </div>
-                                    <div class="radio">
-                                        <label><input type="radio" name="payment">Bank Deposit</label>
-                                    </div>
-                                    <div class="radio">
-                                        <label><input type="radio" name="payment">Pay when pickup</label>
-                                    </div>
+                        <form method="post" action="checkout1.html">
+
+                            <h1>Shopping cart</h1>
+                            <p class="text-muted">You currently have {{Cart::count()}} item(s) in your cart.</p>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    @if(Cart::count()>0)
+                                        <thead>
+                                        <tr>
+                                            <th colspan="2">Product</th>
+                                            <th>Quantity</th>
+                                            <th></th>
+                                            <th>Unit price</th>
+                                            <th>Discount</th>
+                                            <th colspan="2">Total</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach(Cart::content() as $row)
+                                            <tr>
+                                                <td></td>
+                                                <td>
+                                                    <a href="#">{{$row->name}}</a>
+                                                </td>
+                                                <td>
+                                                    <!-- <input type="number" value="2" class="form-control"> -->
+                                                    {{$row->qty}}
+                                                </td>
+                                                <td>
+                                                    <a href="{{route('product.RemoveFromCart' , ['count'=>1,'rowid'=> $row->rowId,'curcount'=>$row->qty])}}"
+                                                       class="btn btn-xs btn-danger pull-right" role="button">
+                                                        <span class="glyphicon glyphicon-minus"></span>&nbsp;
+                                                    </a>
+                                                    <a href="{{route('product.PlusOneCart' , ['rowid'=> $row->rowId,'curcount'=>$row->qty])}}"
+                                                       class="btn btn-xs btn-success pull-right" role="button">
+                                                        <span class="glyphicon glyphicon-plus "></span>&nbsp;
+                                                        <!--span need some non char to fill the space-->
+                                                    </a>
+                                                </td>
+                                                <td>{{$row->price}} LKR</td>
+                                                <td>0 LKR</td>
+                                                <td>{{$row->subtotal}} LKR</td>
+                                                <td>
+                                                    <a href="{{route('product.RemoveFromCart' , ['count'=>'all','rowid'=> $row->rowId])}}"><i
+                                                                class="fa fa-trash-o"></i></a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                        <tfoot>
+                                        <tr>
+                                            <th colspan="5">Total</th>
+                                            <th colspan="2">{{Cart::subtotal()}} LKR</th>
+                                        </tr>
+                                        </tfoot>
+                                    @else
+                                        <td>You have No items in the Cart</td>
+                                    @endif
+                                </table>
+
+                            </div>
+                            <!-- /.table-responsive -->
+
+                            <div class="box-footer">
+                                <div class="pull-left">
+                                    <a href="/" class="btn btn-default"><i class="fa fa-chevron-left"></i>
+                                        Continue shopping</a>
+                                </div>
+                                <div class="pull-right">
+                                    <button type="submit" class="btn btn-primary">Proceed to checkout <i
+                                                class="fa fa-chevron-right"></i>
+                                    </button>
                                 </div>
                             </div>
-
-                            <div class="form-group">
-                                <label class="control-label col-sm-4" for="delivery">Do you want order
-                                    delivered?:</label>
-                                <div class="col-sm-6">
-                                    <select class="form-control" onchange="showAddrDiv(this)" id="delivery"
-                                            name="delivery">
-                                        <option value="0">No</option>
-                                        <option value="1">Yes</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-group" id="addr_div" style="display: none">
-                                <label class="control-label col-sm-4" for="addr">Select Shipping Address:</label>
-                                <div class="col-sm-6">
-                                    <select class="form-control" id="addr" name="addr">
-                                        <option value="0">Use my default address</option>
-                                        <option value="1">Enter new address</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="submit" class="btn btn-success">Make my Order</button>
-                                </div>
-                            </div>
-                            {{ csrf_field() }}
                         </form>
+
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <!-- /.box -->
+
+                </div>
+                <!-- /.col-md-9 -->
+
+                <div class="col-md-3">
+                    <div class="box" id="order-summary">
+                        <div class="box-header">
+                            <h3>Order summary</h3>
+                        </div>
+                        <p class="text-muted">Delivery costs are not included in this following summary</p>
+
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <td>Order subtotal</td>
+                                    <th>{{Cart::subtotal()}} LKR</th>
+                                </tr>
+                                <tr>
+                                    <td>Delivery Costs</td>
+                                    <th>N/A</th>
+                                </tr>
+                                <tr>
+                                    <td>Discount</td>
+                                    <th>0 LKR</th>
+                                </tr>
+                                <tr class="total">
+                                    <td>Total</td>
+                                    <th>{{Cart::subtotal()}}LKR</th>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
                     </div>
                 </div>
+                <!-- /.col-md-3 -->
+
             </div>
+            <!-- /.container -->
         </div>
-    </div>
 
+    @include('partials.footer')
 @endsection
 
-@section('scripts')
-    <script>
-        function showAddrDiv(that) {
-            if (that.value == 1) {
-                document.getElementById("addr_div").style.display = "block";
-            } else {
-                document.getElementById("addr_div").style.display = "none";
-            }
-        }
-    </script>
-@endsection

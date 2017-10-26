@@ -21,16 +21,6 @@ Route::get('/xyz', [
     'as' => 'product.indexX'
 ]);
 
-Route::get('/desktops/{type}/{brand?}', [
-    'uses' => 'ProductController@getDesktops',
-    'as' => 'product.product'
-]);
-
-Route::get('/laptops/{type}/{brand?}', [
-    'uses' => 'ProductController@getLaptops',
-    'as' => 'product.product'
-]);
-
 Route::get('/product/{id}', [
     'uses' => 'ProductController@showItem',
     'as' => 'product.show'
@@ -40,6 +30,11 @@ Route::get('/logout', [
     'uses' => 'UserController@getLogout',
     'as' => 'user.logout',
     'middleware' => 'auth'
+]);
+
+Route::get('/contact', [
+    'uses' => 'ProductController@getContact',
+    'as' => 'product.contact'
 ]);
 
 Route::group(['prefix' => 'user'], function () {

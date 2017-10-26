@@ -1,4 +1,4 @@
-@extends('layouts.master_fluid')
+@extends('layouts.master')
 
 @section('header')
     @include('partials.header')
@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="row">
-        @include('partials.user_prof_sidebar')
+
         <div class="col-md-9">
             <div class="row">
                 @if(session()->has('message'))

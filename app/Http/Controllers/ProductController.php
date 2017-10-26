@@ -24,6 +24,11 @@ class ProductController extends Controller
         return view('shop.show');
     }
 
+    public function getContact()
+    {
+        return view('shop.contact');
+    }
+
     public function showItem($id)
     {
         $item = DB::select("select * from product where pro_id='" . $id . "'");
@@ -33,38 +38,16 @@ class ProductController extends Controller
 
     public function getCart()
     {
+        //dd(Cart::content());
         return view('shop.cart');
-    }
-
-    public function getDesktops($type, $brand = null)
-    {
-        if ($brand == null) {
-            $items = DB::select("select * from desktops where type='" . $type . "'");
-        } else {
-            //$items = DB::select("select * from desktops where type='"new\" and brand= \"Lenovo\" ");
-            $items = DB::select("select * from desktops where type='" . $type . "' and brand='" . $brand . "'");
-        }
-        return view('shop.product', ['items' => $items, 'sidebar' => 'desktop_sbar']);
-    }
-
-    public function getLaptops($type, $brand = null)
-    {
-        if ($brand == null) {
-            $items = DB::select("select * from laptops where type='" . $type . "'");
-        } else {
-            $items = DB::select("select * from laptops where type='" . $type . "' and brand='" . $brand . "'");
-        }
-        return view('shop.product', ['items' => $items, 'sidebar' => 'laptop_sbar']);
     }
 
     public function getAddToCart($id)
     {
-        $table = $this->selectItemType($id);
-        $item = DB::select("select * from " . $table . " where proid='" . $id . "'");
-        // $item = DB::select("select * from laptops where proid='LP001'");
+        $item = DB::select("select * from product where pro_id='" . $id . "'");
 
         foreach ($item as $itm) {
-            $proid = $itm->proid;
+            $proid = $itm->pro_id;
             $name = $itm->name;
             $price = $itm->price;
         }

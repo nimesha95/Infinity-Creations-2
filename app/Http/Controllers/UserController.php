@@ -65,8 +65,8 @@ class UserController extends Controller
                     return redirect()->route('admin.index');
                     break;
                 case 1: //1 is normal user
-                    //Cart::restore(Auth::user()->email);
-                    return redirect()->route('user.profile');
+                    Cart::restore(Auth::user()->email);
+                    return redirect()->route('product.index');
                     break;
                 case 2: //2 is stockmanager
                     return redirect()->route('stockmanager.index');
@@ -133,12 +133,12 @@ class UserController extends Controller
 
     public function getLogout()
     {
-        /*
+
         if (Auth::user()->role == 1) {
             Cart::store(Auth::user()->email);       //saving the cart into a database
             Cart::destroy();        //destroying the current cart object
         }
-*/
+
         Auth::logout();
         return redirect()->back();
     }

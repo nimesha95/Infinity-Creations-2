@@ -237,11 +237,14 @@ _________________________________________________________ -->
 
         <div class="navbar-buttons">
 
-            <div class="navbar-collapse collapse right" id="basket-overview">
-                <a href="basket.html" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span
-                            class="hidden-sm">3 items in cart</span></a>
-            </div>
-            <!--/.nav-collapse -->
+            @if(Auth::check())
+                <div class="navbar-collapse collapse right" id="basket-overview">
+                    <a href="{{route('user.getCart')}}" class="btn btn-primary navbar-btn"><i
+                                class="fa fa-shopping-cart"></i><span
+                                class="hidden-sm">{{Auth::check()? Cart::count() : ''}} items in cart</span></a>
+                </div>
+        @endif
+        <!--/.nav-collapse -->
 
             <div class="navbar-collapse collapse right" id="search-not-mobile">
                 <button type="button" class="btn navbar-btn btn-primary" data-toggle="collapse" data-target="#search">

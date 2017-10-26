@@ -46,11 +46,10 @@
                                     <p class="price">{{$item->price}} LKR {{$item->pricing_unit}}</p>
 
                                     <p class="text-center buttons">
-                                        <a href="basket.html" class="btn btn-primary"><i
+                                        <a href="{{route('product.addToCart' , ['id'=> $item->pro_id])}}"
+                                           class="btn btn-primary"><i
                                                     class="fa fa-shopping-cart"></i>
                                             Add to cart</a>
-                                        <a href="basket.html" class="btn btn-default"><i class="fa fa-heart"></i> Add to
-                                            wishlist</a>
                                     </p>
 
 
