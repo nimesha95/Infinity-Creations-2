@@ -278,3 +278,14 @@ _________________________________________________________ -->
 <!-- /#navbar -->
 
 <!-- *** NAVBAR END *** -->
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+    @if(count($errors)>0)   <!-- to show error alerts -->
+        <div class="alert alert-danger">
+            @foreach($errors->all() as $error)
+                <p>{{$error}}</p>
+            @endforeach
+        </div>
+        @endif
+    </div>
+</div>

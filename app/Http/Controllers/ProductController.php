@@ -92,14 +92,4 @@ class ProductController extends Controller
         return redirect()->route('user.getCart');
     }
 
-    private function selectItemType($id)
-    {
-        //this function is used to find the correct table to search when product id is given
-        $tables = array("desktops" => "DS", "laptops" => "LP");      //this array stores the names of the tables in database
-
-        $prefix = substr($id, 0, 2);      //all of the product types have unique prefix
-
-        return array_search($prefix, $tables);
-    }
-
 }
