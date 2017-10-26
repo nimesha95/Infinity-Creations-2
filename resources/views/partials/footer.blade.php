@@ -64,7 +64,7 @@
                     <strong>Sri Lanka</strong>
                 </p>
 
-                <a href="contact.html">Go to contact page</a>
+                <a href="{{route('product.contact')}}">Go to contact page</a>
 
                 <hr class="hidden-md hidden-lg">
 

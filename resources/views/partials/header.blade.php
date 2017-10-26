@@ -12,7 +12,7 @@ _________________________________________________________ -->
                     <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a></li>
                     <li><a href="{{ route('user.signup') }}">Register</a></li>
                 @endif
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="{{route('product.contact')}}">Contact</a></li>
                 @if(Auth::check())
                     <li><a href="{{ route('user.logout') }}">Logout</a></li>
                 @endif
@@ -87,7 +87,8 @@ _________________________________________________________ -->
         <div class="navbar-collapse collapse" id="navigation">
 
             <ul class="nav navbar-nav navbar-left">
-                <li class="active"><a href="/">Home</a>
+                <li class="{{ Request::is('/') ? 'active' : '' }}">
+                    <a href="/">Home</a>
                 </li>
 
                 <li class="dropdown yamm-fw">
@@ -228,7 +229,7 @@ _________________________________________________________ -->
                 </li>
 
                 <li class="dropdown yamm-fw">
-                    <a href="#">Contact US</a>
+                    <a href="{{route('product.contact')}}">Contact US</a>
                 </li>
             </ul>
 
