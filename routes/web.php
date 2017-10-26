@@ -16,6 +16,11 @@ Route::get('/', [
     'as' => 'product.index'
 ]);
 
+Route::get('/xyz', [
+    'uses' => 'ProductController@getIndexX',
+    'as' => 'product.indexX'
+]);
+
 Route::get('/desktops/{type}/{brand?}', [
     'uses' => 'ProductController@getDesktops',
     'as' => 'product.product'

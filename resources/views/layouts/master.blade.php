@@ -10,6 +10,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="{{ URL::to('src/css/app.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/mystylesheet.css') }}"/>
+<!--
+    <link href="{{ URL::asset('css/font-awesome.css')}}" rel="stylesheet">
+    <link href="{{ URL::asset('css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{ URL::asset('css/animate.min.css')}}" rel="stylesheet">
+    <link href="{{ URL::asset('css/owl.carousel.css')}}" rel="stylesheet">
+    <link href="{{ URL::asset('css/owl.theme.css')}}" rel="stylesheet">
+-->
 
     @yield('styles')
 </head>
@@ -26,10 +33,15 @@
 </div>
 
 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
-<script src="https://use.fontawesome.com/6629a8f4ca.js"></script>
+<script src="{!! asset('js/jquery-1.11.0.min.js') !!}"></script>
+<script src="{{ URL::asset('js/bootstrap.min.js')}}"></script>
+<script src="{{ URL::asset('js/jquery.cookie.js')}}"></script>
+<script src="{{ URL::asset('js/waypoints.min.js')}}"></script>
+<script src="{{ URL::asset('js/modernizr.js')}}"></script>
+<script src="{{ URL::asset('js/bootstrap-hover-dropdown.js')}}"></script>
+<script src="{{ URL::asset('js/owl.carousel.min.js')}}"></script>
+<script src="{{ URL::asset('js/front.js')}}"></script>
+
 @yield('scripts')
 </body>
 </html>

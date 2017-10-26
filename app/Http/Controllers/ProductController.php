@@ -17,6 +17,11 @@ class ProductController extends Controller
         return view('shop.index');
     }
 
+    public function getIndexX()
+    {
+        return view('shop.newIndex');
+    }
+
     public function showItem($id)
     {
         $table = $this->selectItemType($id);
