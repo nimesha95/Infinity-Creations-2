@@ -10,6 +10,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="{{ URL::to('src/css/app.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/mystylesheet.css') }}"/>
+
+    <link href="{{ URL::asset('css/style.default.css')}}" rel="stylesheet" id="theme-stylesheet">
+
 <!--
     <link href="{{ URL::asset('css/font-awesome.css')}}" rel="stylesheet">
     <link href="{{ URL::asset('css/bootstrap.min.css')}}" rel="stylesheet">

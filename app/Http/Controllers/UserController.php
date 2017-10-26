@@ -47,6 +47,8 @@ class UserController extends Controller
 
     public function postSignin(Request $request)
     {
+        //dd($request);
+
         $this->validate($request, [
             'email' => 'email | required ',
             'password' => 'required | min:4'
@@ -63,7 +65,7 @@ class UserController extends Controller
                     return redirect()->route('admin.index');
                     break;
                 case 1: //1 is normal user
-                    Cart::restore(Auth::user()->email);
+                    //Cart::restore(Auth::user()->email);
                     return redirect()->route('user.profile');
                     break;
                 case 2: //2 is stockmanager
@@ -126,17 +128,17 @@ class UserController extends Controller
         $user->save();
         Auth::login($user);
         return redirect()->route('product.index');
-
     }
 
 
     public function getLogout()
     {
+        /*
         if (Auth::user()->role == 1) {
             Cart::store(Auth::user()->email);       //saving the cart into a database
             Cart::destroy();        //destroying the current cart object
         }
-
+*/
         Auth::logout();
         return redirect()->back();
     }
