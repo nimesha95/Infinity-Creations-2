@@ -107,6 +107,18 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="control-label col-sm-2" for="imageForHome">Thumbnail (450*600)</label>
+                            <div class="col-sm-6">
+                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                    <span class="btn btn-default btn-file">
+                                        <span>Choose file</span>
+                                        <input name="img1" type="file"/>
+                                    </span>
+                                    <span class="fileinput-filename"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="control-label col-sm-2" for="Description">Description:</label>
                             <div class="col-sm-10">
                                 <textarea class="form-control" rows="5" id="description" title="description"

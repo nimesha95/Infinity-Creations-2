@@ -44,7 +44,8 @@ _________________________________________________________ -->
                     </form>
 
                     <p class="text-center text-muted">Not registered yet?</p>
-                    <p class="text-center text-muted"><a href="register.html"><strong>Register now</strong></a>! It is
+                    <p class="text-center text-muted"><a href="{{ route('user.signup') }}"><strong>Register now</strong></a>!
+                        It is
                         easy and done in 1&nbsp;minute and gives you access to special discounts and much more!</p>
 
                 </div>
@@ -64,9 +65,8 @@ _________________________________________________________ -->
         <div class="navbar-header">
 
             <a class="navbar-brand home" href="index.html" data-animate-hover="bounce">
-                <!--<img src="img/logo.png" alt="Obaju logo" class="hidden-xs">-->
                 <img src="{{ asset('img/infinityCreationLogo.png') }}" height="100" style="float:left"/>
-                <h1 id="fh5co-logo"><a href="index.html">Infinity <font color="#aaaaaa">Creations</font></a></h1>
+                <h1 id="fh5co-logo"><a href="/">Infinity <font color="#aaaaaa">Creations</font></a></h1>
             </a>
             <div class="navbar-buttons">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation">
@@ -87,7 +87,7 @@ _________________________________________________________ -->
         <div class="navbar-collapse collapse" id="navigation">
 
             <ul class="nav navbar-nav navbar-left">
-                <li class="active"><a href="index.html">Home</a>
+                <li class="active"><a href="/">Home</a>
                 </li>
 
                 <li class="dropdown yamm-fw">

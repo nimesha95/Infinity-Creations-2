@@ -82,9 +82,18 @@ class AdminController extends Controller
 
     public function postAdditems(Request $request)
     {
+        //dd($request);
         $count = 0;
         //added "image not avialable" link to the imgArr
+        $imgThumb = [];
         $imgArr = ["http://res.cloudinary.com/docp8wv1x/image/upload/v1508704084/dprnfntaojeelbyvakmn.jpg", "http://res.cloudinary.com/docp8wv1x/image/upload/v1508704084/dprnfntaojeelbyvakmn.jpg", "http://res.cloudinary.com/docp8wv1x/image/upload/v1508704084/dprnfntaojeelbyvakmn.jpg"];
+        if ($request->hasFile('img1')) {
+            $thumb = $request->img1;
+            \Cloudder::upload($thumb);      //uploading image to cloudinary
+            $c = \Cloudder::getResult();      //getting the result array
+            $imgThumb[0] = $c['url'];
+            //dd($c);
+        }
         if ($request->hasFile('img')) {
             foreach ($request->img as $image) {
                 \Cloudder::upload($image);      //uploading image to cloudinary
@@ -102,14 +111,15 @@ class AdminController extends Controller
         $unit = $request->input('unit');
         $availability = $request->input('availability');
         $description = $request->input('description');
+        $thumb = $imgThumb[0];
 
         $img1 = $imgArr[0];
         $img2 = $imgArr[1];
         $img3 = $imgArr[2];
 
 
-        DB::insert("insert into product (pro_id,name,type,price,pricing_unit,availability,discount,item_description,img1,img2,img3) values (?,?,?,?,?,?,?,?,?,?,?)",
-            [$proid, $name, $type, $price, $unit, $availability, $discount, $description, $img1, $img2, $img3]);
+        DB::insert("insert into product (pro_id,name,type,price,pricing_unit,availability,discount,item_description,img1,img2,img3,thumb) values (?,?,?,?,?,?,?,?,?,?,?,?)",
+            [$proid, $name, $type, $price, $unit, $availability, $discount, $description, $img1, $img2, $img3, $thumb]);
 
         return redirect(route('admin.additems'))->with('message', 'Item Added Succesfully');
         //dd($item);

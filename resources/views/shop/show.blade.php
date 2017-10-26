@@ -20,72 +20,91 @@
 
 @section('content')
 
-    @foreach($items as $item)
-        <div class="row">
-            <div class="col-md-6">
-                <table border="0">
-                    <tr>
-                        <td width="400px" height="400px" colspan="5"><img id="imageReplace" src="{{$item->image}}"
-                                                                          width="400px" height="400px"></td>
-                    </tr>
-                    <tr>
-                        <td width="80px" height="80px"><img src="{{$item->image}}"
-                                                            onclick="changeImage('{{$item->image}}')" width="80px"
-                                                            height="80px"></td>
-                        <td width="80px" height="80px"><img src="{{$item->img1}}"
-                                                            onclick="changeImage('{{$item->img1}}')" width="80px"
-                                                            height="80px"></td>
-                        <td width="80px" height="80px"><img src="{{$item->img2}}"
-                                                            onclick="changeImage('{{$item->img2}}')" width="80px"
-                                                            height="80px"></td>
-                        <td width="80px" height="80px"><img src="{{$item->img3}}"
-                                                            onclick="changeImage('{{$item->img3}}')" width="80px"
-                                                            height="80px"></td>
-                        <td width="80px" height="80px"><img src="{{$item->img4}}"
-                                                            onclick="changeImage('{{$item->img4}}')" width="80px"
-                                                            height="80px"></td>
-                    </tr>
-                </table>
-            </div>
+    <div id="all">
 
-            <div class="col-md-6">
-                <!-- form-group is used to put some top margins between rows-->
-                <div class="row form-group"><br></div>
-                <div class="row form-group"><br></div>
-                <div class="row form-group">
-                    <div class="col-md-6 col-md-offset-1"><h3>{{$item->name}}</h3></div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-md-3 col-md-offset-1">Product ID:</div>
-                    <div class="col-md-3">{{$item->proid}}</div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-md-3 col-md-offset-1">Condition:</div>
-                    <div class="col-md-3">{{$item->type}}</div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-md-12 col-md-offset-1">{{$item->description}}</div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-md-3 col-md-offset-1">Price:</div>
-                    <div class="col-md-3"><b>{{$item->price}}</b></div>
-                </div>
-                <div class="row form-group">
-                    <div class="btn-group col-md-offset-1" role="group" aria-label="...">
-                        <a href="#" role="button" class="btn btn-default">Add To Cart</a>
-                        <a href="#" role="button" class="btn btn-success">Buy it Now</a>
-                        <a href="#" role="button" class="btn btn-info">Wishlist</a>
+        <div id="content">
+            <div class="container">
+
+
+                <div class="col-md-2"></div>
+                @foreach($items as $item)
+                    <div class="col-md-9">
+
+                        <div class="row" id="productMain">
+                            <div class="col-sm-6">
+                                <div id="mainImage">
+                                    <img src="{{$item->img1}}" alt="" class="img-responsive">
+                                </div>
+
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="box">
+                                    <h1 class="text-center">{{$item->name}}</h1>
+                                    <p class="goToDescription"><a href="#details" class="scroll-to">Scroll to product
+                                            details, material & care and sizing</a>
+                                    </p>
+                                    <p class="price">{{$item->price}} LKR {{$item->pricing_unit}}</p>
+
+                                    <p class="text-center buttons">
+                                        <a href="basket.html" class="btn btn-primary"><i
+                                                    class="fa fa-shopping-cart"></i>
+                                            Add to cart</a>
+                                        <a href="basket.html" class="btn btn-default"><i class="fa fa-heart"></i> Add to
+                                            wishlist</a>
+                                    </p>
+
+
+                                </div>
+
+                                <div class="row" id="thumbs">
+                                    <div class="col-xs-4">
+                                        <a href="{{$item->img1}}" class="thumb">
+                                            <img src="{{$item->img1}}" alt="" class="img-responsive">
+                                        </a>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <a href="{{$item->img2}}" class="thumb">
+                                            <img src="{{$item->img2}}" alt="" class="img-responsive">
+                                        </a>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <a href="{{$item->img3}}" class="thumb">
+                                            <img src="{{$item->img3}}" alt="" class="img-responsive">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="box" id="details">
+                            <p>
+                            <h4>Product details</h4>
+                            <p>{{$item->item_description}}</p>
+
+                            <hr>
+                            <div class="social">
+                                <h4>Show it to your friends</h4>
+                                <p>
+                                    <a href="#" class="external facebook" data-animate-hover="pulse"><i
+                                                class="fa fa-facebook"></i></a>
+                                    <a href="#" class="external gplus" data-animate-hover="pulse"><i
+                                                class="fa fa-google-plus"></i></a>
+                                    <a href="#" class="external twitter" data-animate-hover="pulse"><i
+                                                class="fa fa-twitter"></i></a>
+                                    <a href="#" class="email" data-animate-hover="pulse"><i class="fa fa-envelope"></i></a>
+                                </p>
+                            </div>
+                        </div>
+
+
                     </div>
-                </div>
+                    <!-- /.col-md-9 -->
+                @endforeach
             </div>
+            <!-- /.container -->
         </div>
-        <div class="row form-group"><br></div>
-        <div class="row form-group"><br></div>
-        <div class="row">
-            <div class="col-md-12">
-                <p>{{$item->itemDetails}}</p>
-            </div>
-        </div>
-    @endforeach
+    </div>
 
 @endsection

@@ -14,18 +14,20 @@ class ProductController extends Controller
 {
     public function getIndex()
     {
-        return view('shop.index');
+        $items = DB::select("select * from product");
+        //dd($items);
+        return view('shop.index', ['items' => $items]);
     }
 
     public function getIndexX()
     {
-        return view('shop.newIndex');
+        return view('shop.show');
     }
 
     public function showItem($id)
     {
-        $table = $this->selectItemType($id);
-        $item = DB::select("select * from " . $table . " where proid='" . $id . "'");
+        $item = DB::select("select * from product where pro_id='" . $id . "'");
+        //dd($item);
         return view('shop.show', ['items' => $item]);
     }
 
