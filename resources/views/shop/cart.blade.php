@@ -20,7 +20,7 @@
 
                     <div class="box">
 
-                        <form method="post" action="checkout1.html">
+                        <form method="post" action="#">
 
                             <h1>Shopping cart</h1>
                             <p class="text-muted">You currently have {{Cart::count()}} item(s) in your cart.</p>
@@ -89,13 +89,19 @@
                                         Continue shopping</a>
                                 </div>
                                 <div class="pull-right">
+                                    <a href="{{ url('/user/checkout/1') }}" class="btn btn-primary">
+                                        Proceed to checkout
+                                        <i class="fa fa-chevron-right"></i>
+                                    </a>
+                                    <!--
                                     <button type="submit" class="btn btn-primary">Proceed to checkout <i
                                                 class="fa fa-chevron-right"></i>
                                     </button>
+                                    -->
                                 </div>
                             </div>
                         </form>
-
+                        <button id="myBtn">Try it</button>
                     </div>
                     <!-- /.box -->
 
@@ -139,7 +145,10 @@
             </div>
             <!-- /.container -->
         </div>
-
-    @include('partials.footer')
+    </div>
+@section('scripts')
+    <script src="{{URL::to('js/myCustomJS.js')}}"></script>
+@endsection
+@include('partials.footer')
 @endsection
 

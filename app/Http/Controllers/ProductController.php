@@ -78,18 +78,34 @@ class ProductController extends Controller
         return redirect()->route('user.getCart');
     }
 
-    public function checkout()
+    public function checkout($id)
     {
+        //dd($id);
+        if ($id == 1) {
+            return view('shop.checkout_addr');
+        } elseif ($id == 2) {
+            return view('shop.checkout_delivery');
+        } elseif ($id == 3) {
+            return view('shop.checkout_payment');
+        } elseif ($id == 4) {
+            return view('shop.checkout_review');
+        }
+
+        /*
         $order = new Order();
         $content = Cart::content();
+
         /*
         $order->addRow($content);
         dd($content);
         */
+
+        /*
         $serializedContent = serialize($content);
         $total = Cart::subtotal();
         DB::insert('insert into orders (email,order_obj,total) values (?,?,?)', [Auth::user()->email, $serializedContent, $total]);
         return redirect()->route('user.getCart');
+    */
     }
 
 }
