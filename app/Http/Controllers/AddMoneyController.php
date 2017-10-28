@@ -99,13 +99,13 @@ class AddMoneyController extends HomeController
         } catch (\PayPal\Exception\PPConnectionException $ex) {
             if (\Config::get('app.debug')) {
                 \Session::put('error', 'Connection timeout');
-                return Redirect::route('paywithpaypal');
+                return Redirect::route('addmoney.paywithpaypal');
                 /** echo "Exception: " . $ex->getMessage() . PHP_EOL; **/
                 /** $err_data = json_decode($ex->getData(), true); **/
                 /** exit; **/
             } else {
                 \Session::put('error', 'Some error occur, sorry for inconvenient');
-                return Redirect::route('paywithpaypal');
+                return Redirect::route('addmoney.paywithpaypal');
                 /** die('Some error occur, sorry for inconvenient'); **/
             }
         }
@@ -137,7 +137,7 @@ class AddMoneyController extends HomeController
         Session::forget('paypal_payment_id');
         if (empty(Input::get('PayerID')) || empty(Input::get('token'))) {
             \Session::put('error', 'Payment failed');
-            return Redirect::route('paywithpaypal');
+            return Redirect::route('addmoney.paywithpaypal');
         }
         $payment = Payment::get($payment_id, $this->_api_context);
         /** PaymentExecution object includes information necessary **/
