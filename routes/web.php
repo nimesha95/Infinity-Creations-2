@@ -21,6 +21,11 @@ Route::get('/custom_order', [
     'as' => 'product.custom_order'
 ]);
 
+Route::post('/custom_order', [
+    'uses' => 'ProductController@postCustomOrder',
+    'as' => 'product.custom_order'
+]);
+
 Route::get('/xyz', [
     'uses' => 'ProductController@getIndexX',
     'as' => 'product.indexX'

@@ -9,6 +9,7 @@ use App\Http\Requests;
 use \Cart as Cart;
 use Auth;
 use App\Order;
+use App\Custom_orders;
 
 class ProductController extends Controller
 {
@@ -26,6 +27,32 @@ class ProductController extends Controller
 
     public function getCustomOrder()
     {
+        return view('shop.custom_order');
+    }
+
+    public function postCustomOrder(Request $request)
+    {
+        $custom_order = new Custom_orders;
+        $custom_order->email = Auth::user()->email;
+        $custom_order->order_type = $this->getOrderType($request->order_type);
+        $custom_order->description = $request->comment;
+
+        if ($request->design_method == 0) {
+            $custom_order->method = $request->printing_method;
+        } else {
+            $custom_order->method = $request->design_method;
+        }
+
+        if ($request->hasFile('img')) {
+            $img = $request->img;
+            \Cloudder::upload($img);      //uploading image to cloudinary
+            $c = \Cloudder::getResult();      //getting the result array
+            $custom_order->img = $c['url'];
+
+        }
+
+        //dd($custom_order);
+        $custom_order->save();
         return view('shop.custom_order');
     }
 
@@ -132,4 +159,19 @@ class ProductController extends Controller
             return view('shop.cart');
         }
     }
+
+    private function getOrderType($id)
+    {
+        //used to get the text when custom order is submitted
+        if ($id == 1) {
+            return 'Printing';
+        } elseif ($id == 2) {
+            return 'Designing';
+        } elseif ($id == 3) {
+            return 'Event Planing';
+        } else {
+            return 'Other';
+        }
+    }
+
 }
