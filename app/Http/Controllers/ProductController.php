@@ -24,6 +24,11 @@ class ProductController extends Controller
         return view('shop.show');
     }
 
+    public function getCustomOrder()
+    {
+        return view('shop.custom_order');
+    }
+
     public function getContact()
     {
         return view('shop.contact');

@@ -105,7 +105,7 @@ _________________________________________________________ -->
                                     <div class="col-sm-2">
                                         <h5>Digital Printing</h5>
                                         <ul>
-                                            <li><a href="category.html">T-Flex Banners</a>
+                                            <li><a href="{{route('product.custom_order')}}">T-Flex Banners</a>
                                             </li>
                                             <li><a href="category.html">PVC Stickers</a>
                                             </li>

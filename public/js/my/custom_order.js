@@ -1,7 +1,9 @@
 $(document).ready(function () {
-    $('#addr_info').hide();
+    console.log("helo");
+    $('#design_div').hide();
+    $('#printing_div').hide();
+    //$('#printing_method').hide();
 });
-
 
 $('#addr_sel').on('change', function () {
     //alert( this.value );
