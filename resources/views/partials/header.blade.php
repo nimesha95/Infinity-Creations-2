@@ -36,7 +36,11 @@ _________________________________________________________ -->
                             <input type="password" class="form-control" name="password" id="password-modal"
                                    placeholder="password">
                         </div>
-
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label><input type="checkbox" name="rememberme" value="1">Remember Me!</label>
+                            </div>
+                        </div>
                         <p class="text-center">
                             <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i> Log in</button>
                         </p>

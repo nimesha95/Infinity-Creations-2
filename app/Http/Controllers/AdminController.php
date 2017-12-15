@@ -56,7 +56,7 @@ class AdminController extends Controller
 
     public function getEditItem(Request $request)
     {
-        // dd($request);
+        dd($request);
         session(['AdminEditItem' => 1]);
         $this->validate($request, [
             'pro_id' => 'required | is_proid | min:6 | max:6',

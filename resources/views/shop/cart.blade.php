@@ -39,7 +39,7 @@
                                         </thead>
                                         <tbody>
                                         @foreach(Cart::content() as $row)
-                                            <tr>
+                                            <tr class="itemRow" data-rowid="{{$row->rowId}}">
                                                 <td></td>
                                                 <td>
                                                     <a href="#">{{$row->name}}</a>
@@ -48,9 +48,10 @@
                                                     <!-- <input type="number" value="2" class="form-control"> -->
                                                     {{$row->qty}}
                                                 </td>
-                                                <td>
-                                                    <a href="{{route('product.RemoveFromCart' , ['count'=>1,'rowid'=> $row->rowId,'curcount'=>$row->qty])}}"
-                                                       class="btn btn-xs btn-danger pull-right" role="button">
+                                                <td class="buttonOption">
+                                                    <a id="myBtn"
+                                                       href="{{route('product.RemoveFromCart' , ['count'=>1,'rowid'=> $row->rowId,'curcount'=>$row->qty])}}""
+                                                    class="btn btn-xs btn-danger pull-right rem" role="button">
                                                         <span class="glyphicon glyphicon-minus"></span>&nbsp;
                                                     </a>
                                                     <a href="{{route('product.PlusOneCart' , ['rowid'=> $row->rowId,'curcount'=>$row->qty])}}"
@@ -101,7 +102,6 @@
                                 </div>
                             </div>
                         </form>
-                        <button id="myBtn">Try it</button>
                     </div>
                     <!-- /.box -->
 
@@ -147,6 +147,10 @@
         </div>
     </div>
 @section('scripts')
+    <script>
+        var token = '{{Session::token()}}';
+        var url = '{{route('changeCart')}}';
+    </script>
     <script src="{{URL::to('js/myCustomJS.js')}}"></script>
 @endsection
 @include('partials.footer')

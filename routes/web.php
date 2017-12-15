@@ -58,6 +58,11 @@ Route::group(['prefix' => 'user'], function () {
             'uses' => 'UserController@postSignin',
             'as' => 'user.signin'
         ]);
+
+        Route::get('/reset_pass', [
+            'uses' => 'UserController@getResetPass',
+            'as' => 'user.resetPass'
+        ]);
     });
 
     Route::group(['middleware' => ['auth', 'user']], function () {
@@ -85,6 +90,10 @@ Route::group(['prefix' => 'user'], function () {
             'uses' => 'ProductController@getPlusOneCart',
             'as' => 'product.PlusOneCart'
         ]);
+
+        Route::post('/changeCart', function (\Illuminate\Http\Request $request) {
+            return response()->json(['message' => $request['_token']]);
+        })->name('changeCart');
 
         Route::get('/cart', [
             'uses' => 'ProductController@getCart',

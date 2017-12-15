@@ -45,6 +45,11 @@ class UserController extends Controller
         return view('user.signin');
     }
 
+    public function getResetPass()
+    {
+        return view('user.reset_password');
+    }
+
     public function postSignin(Request $request)
     {
         //dd($request);
@@ -54,7 +59,10 @@ class UserController extends Controller
             'password' => 'required | min:4'
         ]);
 
-        if (Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password')])) {
+        $remember = $request->has('rememberme') ? true : false;      //getting the remember me tick value from user
+
+
+        if (Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password')], $remember)) {
             $type = Auth::user()->role;
             //dd($type);
             DB::table('users')->where('email', $request->input('email'))->update(array(
