@@ -23,6 +23,10 @@
                     <input type="text" id="name" name="name" class="form-control">
                 </div>
                 <div class="form-group">
+                    <label for="mobile">Mobile No</label>
+                    <input type="tel" pattern="\d{10}" id="phone" name="phone" class="form-control">
+                </div>
+                <div class="form-group">
                     <label for="email">Email</label>
                     <input type="text" id="email" name="email" class="form-control">
                 </div>

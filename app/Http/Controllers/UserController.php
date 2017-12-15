@@ -130,6 +130,7 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'email | required | unique:users',
             'password' => 'required | min:4',
+            'phone' => 'required | max:10'
         ]);
 
 
@@ -139,6 +140,7 @@ class UserController extends Controller
             'password' => bcrypt($request->input('password')),
             'role' => 1,
             'role_name' => 'user',
+            'phone_no' => $request->input('phone'),
         ]);
         $user->save();
         Auth::login($user);
