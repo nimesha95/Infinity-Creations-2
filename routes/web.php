@@ -63,6 +63,11 @@ Route::group(['prefix' => 'user'], function () {
             'uses' => 'UserController@getResetPass',
             'as' => 'user.resetPass'
         ]);
+
+        Route::post('/reset_pass', [
+            'uses' => 'UserController@postResetPass',
+            'as' => 'user.resetPass'
+        ]);
     });
 
     Route::group(['middleware' => ['auth', 'user']], function () {
@@ -102,6 +107,11 @@ Route::group(['prefix' => 'user'], function () {
 
         Route::get('/checkout/{id}', [
             'uses' => 'ProductController@checkout',
+            'as' => 'user.checkout'
+        ]);
+
+        Route::post('/checkout/{id}', [
+            'uses' => 'ProductController@postcheckout',
             'as' => 'user.checkout'
         ]);
 

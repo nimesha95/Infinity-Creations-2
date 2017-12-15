@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('title')
+    SignIn
+@endsection
+
 @section('header')
     @include('partials.header')
 @endsection

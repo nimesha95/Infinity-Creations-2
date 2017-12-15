@@ -50,6 +50,13 @@ class UserController extends Controller
         return view('user.reset_password');
     }
 
+    public function postResetPass(Request $request)
+    {
+        dd($request);
+        //not complete
+        //need to make custom reset pass function
+    }
+
     public function postSignin(Request $request)
     {
         //dd($request);

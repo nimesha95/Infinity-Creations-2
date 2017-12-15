@@ -108,4 +108,23 @@ class ProductController extends Controller
     */
     }
 
+    public function postcheckout(Request $request, $id)
+    {
+        if ($id == 1) {
+            //dd($request);
+            return view('shop.checkout_addr');
+        } elseif ($id == 2) {
+            //dd($request);
+            return view('shop.checkout_delivery');
+        } elseif ($id == 3) {
+            //dd($request);
+            return view('shop.checkout_payment');
+        } elseif ($id == 4) {
+            // dd($request);
+            return view('shop.checkout_review');
+        } elseif ($id == 5) {
+            //dd($request);
+            return view('shop.cart');
+        }
+    }
 }

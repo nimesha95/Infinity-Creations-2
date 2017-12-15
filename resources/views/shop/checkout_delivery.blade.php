@@ -17,7 +17,8 @@
                 <div class="col-md-9" id="checkout">
 
                     <div class="box">
-                        <form method="post" action="#">
+                        <form method="post" action="{{route('user.checkout',3)}}">
+                            {{ csrf_field() }}
                             <h1>Checkout - Delivery method</h1>
                             <ul class="nav nav-pills nav-justified">
                                 <li><a href="{{ url('/user/checkout/1') }}"><i class="fa fa-map-marker"></i><br>Address</a>
@@ -35,43 +36,30 @@
                                     <div class="col-sm-6">
                                         <div class="box shipping-method">
 
-                                            <h4>USPS Next Day</h4>
+                                            <h4>Pickup at Shop</h4>
 
-                                            <p>Get it right on next day - fastest option possible.</p>
+                                            <p>Make the order now and pay in the shop</p>
 
                                             <div class="box-footer text-center">
 
-                                                <input type="radio" name="delivery" value="delivery1">
+                                                <input type="radio" name="delivery" value="pickup" checked>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="box shipping-method">
 
-                                            <h4>USPS Next Day</h4>
+                                            <h4>Delivery</h4>
 
-                                            <p>Get it right on next day - fastest option possible.</p>
+                                            <p>Get it delivered to your doorstep</p>
 
                                             <div class="box-footer text-center">
 
-                                                <input type="radio" name="delivery" value="delivery2">
+                                                <input type="radio" name="delivery" value="delivery">
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="col-sm-6">
-                                        <div class="box shipping-method">
-
-                                            <h4>USPS Next Day</h4>
-
-                                            <p>Get it right on next day - fastest option possible.</p>
-
-                                            <div class="box-footer text-center">
-
-                                                <input type="radio" name="delivery" value="delivery3">
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                                 <!-- /.row -->
 
@@ -85,9 +73,12 @@
                                         to Addresses</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="{{ url('/user/checkout/3') }}" class="btn btn-primary">Continue to Payment
+                                    <button type="submit" class="btn btn-primary">Continue to Delivery
                                         Method<i
-                                                class="fa fa-chevron-right"></i></a>
+                                                class="fa fa-chevron-right"></i></button>
+                                <!--     <a href="{{ url('/user/checkout/3') }}" class="btn btn-primary">Continue to Payment
+                                        Method<i
+                                                class="fa fa-chevron-right"></i></a>    -->
 
                                 </div>
                             </div>

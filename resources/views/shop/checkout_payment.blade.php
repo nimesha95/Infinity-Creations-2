@@ -17,7 +17,8 @@
                 <div class="col-md-9" id="checkout">
 
                     <div class="box">
-                        <form method="post" action="#">
+                        <form method="post" action="{{route('user.checkout',4)}}">
+                            {{ csrf_field() }}
                             <h1>Checkout - Payment method</h1>
                             <ul class="nav nav-pills nav-justified">
                                 <li><a href="{{ url('/user/checkout/1') }}"><i class="fa fa-map-marker"></i><br>Address</a>
@@ -36,40 +37,26 @@
                                     <div class="col-sm-6">
                                         <div class="box payment-method">
 
+                                            <h4>Cash</h4>
+
+                                            <p>Pay later when you pickup</p>
+
+                                            <div class="box-footer text-center">
+
+                                                <input type="radio" name="payment" value="cash" checked>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="box payment-method">
+
                                             <h4>Paypal</h4>
 
-                                            <p>We like it all.</p>
+                                            <p>Paywith your Credit/Debit card</p>
 
                                             <div class="box-footer text-center">
 
-                                                <input type="radio" name="payment" value="payment1">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="box payment-method">
-
-                                            <h4>Payment gateway</h4>
-
-                                            <p>VISA and Mastercard only.</p>
-
-                                            <div class="box-footer text-center">
-
-                                                <input type="radio" name="payment" value="payment2">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-6">
-                                        <div class="box payment-method">
-
-                                            <h4>Cash on delivery</h4>
-
-                                            <p>You pay when you get it.</p>
-
-                                            <div class="box-footer text-center">
-
-                                                <input type="radio" name="payment" value="payment3">
+                                                <input type="radio" name="payment" value="paypal">
                                             </div>
                                         </div>
                                     </div>
@@ -86,10 +73,16 @@
                                         to Delivery</a>
                                 </div>
                                 <div class="pull-right">
+                                    <div class="pull-right">
+                                        <button type="submit" class="btn btn-primary">Continue to Delivery
+                                            Method<i
+                                                    class="fa fa-chevron-right"></i></button>
+                                    <!--
                                     <a href="{{ url('/user/checkout/4') }}" class="btn btn-primary">Review Order<i
                                                 class="fa fa-chevron-right"></i></a>
+                                                -->
 
-                                </div>
+                                    </div>
                             </div>
                         </form>
                     </div>

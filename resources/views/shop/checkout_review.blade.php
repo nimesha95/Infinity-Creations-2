@@ -17,7 +17,8 @@
                 <div class="col-md-9" id="checkout">
 
                     <div class="box">
-                        <form method="post" action="#">
+                        <form method="post" action="{{route('user.checkout',5)}}">
+                            {{csrf_field()}}
                             <h1>Checkout - Order review</h1>
                             <ul class="nav nav-pills nav-justified">
                                 <li><a href="{{ url('/user/checkout/1') }}"><i class="fa fa-map-marker"></i><br>Address</a>
@@ -82,8 +83,12 @@
                                             to Payment</a>
                                     </div>
                                     <div class="pull-right">
+                                        <button type="submit" class="btn btn-primary">Continue to Delivery
+                                            Method<i
+                                                    class="fa fa-chevron-right"></i></button>
+                                    <!--
                                         <a href="{{ url('/user/checkout/5') }}" class="btn btn-primary">Confirm Order<i
-                                                    class="fa fa-chevron-right"></i></a>
+                                                    class="fa fa-chevron-right"></i></a> -->
 
                                     </div>
                                 </div>
