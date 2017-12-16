@@ -20,7 +20,7 @@ thank you for downloading Obaju, responsive bootstrap e-commerce template.
 - Blog - listing
 - Blog - post
 - 404
-- Contact page
+- Contact pages
 
 **Plugins used:**
 
