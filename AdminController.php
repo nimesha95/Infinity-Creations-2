@@ -8,6 +8,7 @@ use Faker\Provider\ka_GE\DateTime;
 use Illuminate\Http\Request;
 use App\Item_info;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 
 
@@ -209,7 +210,21 @@ class AdminController extends Controller
         return $proid;
     }
 
-    public function salaryCalc(){
+    public function salaryCalc(Request $request){
+//        dd($request);
+        $role1 = $request->role1;
+//        dd($role1);
+        $begin_date = $request->begin_date;
+//        dd($begin_date);
+        $end_date= $request->end_date;
+
+//        $data = DB::table('employee')
+//            ->join('attendance','employee.emp_id','=','attendance.emp_id')
+//            ->join('salary','employee.role','=','salary.role')
+//            ->where([$role,'employee.role'],['attendance.clock_in','>=',$begin_date],['attendance.clock_out','<=',$end_date])
+//            ->select('employee.*','attendance.clock_in','attendance.clock_out','salary.sal_per_hr')
+//            ->get();
+//        dd($data);
 
         $data = DB::table('employee')
             ->join('attendance','employee.emp_id','=','attendance.emp_id')
@@ -217,6 +232,55 @@ class AdminController extends Controller
             ->select('employee.*','attendance.clock_in','attendance.clock_out','salary.sal_per_hr')
             ->get();
 
+//        for($x=0;$x<sizeof($data->toArray());$x++){
+//            $in = $data->pluck('clock_in')->toArray();
+//            $in1 = new Carbon($in[$x]);
+//            $out = $data->pluck('clock_out')->toArray();
+//            $out1 = new Carbon($out[$x]);
+//            $diff = $in1->diffInSeconds($out1);
+//            $hours = (float)($diff/(60*60));
+//
+//            $sal = $data->pluck('sal_per_hr')->toArray();
+//            $sal2 = (float)$sal[$x];
+//
+//            $total_sal = $hours * $sal2;
+//
+//            $arr[] = array($total_sal);
+//        }
+
+        for($i=0;$i<sizeof($data->toArray());$i++) {
+            $id = $data->pluck('emp_id')->toArray()[$i];
+            $first = $data->pluck('first_name')->toArray()[$i];
+            $last = $data->pluck('last_name')->toArray()[$i];
+            $role = $data->pluck('role')->toArray()[$i];
+            $clock_in = explode(' ',$data->pluck('clock_in')->toArray()[$i])['0'];
+            $clock_out = explode(' ',$data->pluck('clock_out')->toArray()[$i])['0'];
+//            dd($clock_in);
+//            $salary = $arr[$i][0];
+
+            if(($role==$role1)&&((int)$clock_in>=(int)$begin_date)&&((int)$clock_out<=(int)$end_date)){
+                $array2[] = array('emp_id'=>$id,'first_name'=>$first,'last_name'=>$last,'role'=>$role);
+            }
+        }
+        if($array2){
+            return view('admin.salary', ['array2'=>$array2]);
+        }
+        else{
+            return view('admin.salary')->with('No results found!');
+        }
+
+    }
+
+    public function getSalary($emp_id){
+//        dd($emp_id);
+        $data = DB::table('employee')
+            ->join('attendance','employee.emp_id','=','attendance.emp_id')
+            ->join('salary','employee.role','=','salary.role')
+            ->where('attendance.emp_id','=',$emp_id)
+            ->select('employee.*','attendance.clock_in','attendance.clock_out','salary.sal_per_hr')
+            ->get();
+
+        $h = 0.0;
         for($x=0;$x<sizeof($data->toArray());$x++){
             $in = $data->pluck('clock_in')->toArray();
             $in1 = new Carbon($in[$x]);
@@ -225,24 +289,33 @@ class AdminController extends Controller
             $diff = $in1->diffInSeconds($out1);
             $hours = (float)($diff/(60*60));
 
+            $hours1 = number_format(($h + $hours),2);
+
             $sal = $data->pluck('sal_per_hr')->toArray();
             $sal2 = (float)$sal[$x];
 
-            $total_sal = $hours * $sal2 * 30;
+            $total_sal = number_format(($hours1 * $sal2),2);
 
-            $arr[] = array($total_sal);
+            $arr[] = array($hours1,$total_sal);
         }
-
+//        dd($arr);
         for($i=0;$i<sizeof($data->toArray());$i++) {
             $id = $data->pluck('emp_id')->toArray()[$i];
             $first = $data->pluck('first_name')->toArray()[$i];
             $last = $data->pluck('last_name')->toArray()[$i];
             $role = $data->pluck('role')->toArray()[$i];
-            $salary = $arr[$i][0];
+            $num_of_hours = $arr[0][0];
+            $salary = $arr[0][1];
+//            dd($salary);
 
-            $array2[] = array('emp_id'=>$id,'first_name'=>$first,'last_name'=>$last,'role'=>$role,'salary'=>$salary);
+            $array2[] = array('emp_id'=>$id,'first_name'=>$first,'last_name'=>$last,'role'=>$role,'num_of_hours'=>$num_of_hours,'salary'=>$salary);
         }
-        return view('admin.salary', ['array2'=>$array2]);
+        if($array2){
+            return view('admin.total_sal', ['array2'=>$array2]);
+        }
+        else{
+            return view('admin.total_sal')->with('No results found!');
+        }
 
     }
 
