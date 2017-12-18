@@ -9,6 +9,7 @@ use Validator;
 use URL;
 use Session;
 use Redirect;
+use Illuminate\Support\Facades\DB;
 /** All Paypal Details class **/
 
 use PayPal\Rest\ApiContext;
@@ -23,6 +24,7 @@ use PayPal\Api\RedirectUrls;
 use PayPal\Api\ExecutePayment;
 use PayPal\Api\PaymentExecution;
 use PayPal\Api\Transaction;
+use \Cart as Cart;
 
 class AddMoneyController extends HomeController
 {
@@ -66,6 +68,7 @@ class AddMoneyController extends HomeController
         $int = (int)$num;
         $id = (float)$num;
 
+        //dd($id);
         $payer = new Payer();
         $payer->setPaymentMethod('paypal');
 
@@ -74,7 +77,7 @@ class AddMoneyController extends HomeController
         $item_1->setName('Item 1')/** item name **/
         ->setCurrency('USD')
             ->setQuantity(1)
-            ->setPrice($request->get('amount'));
+            ->setPrice($id);
         /** unit price **/
 
         $item_list = new ItemList();
@@ -82,7 +85,7 @@ class AddMoneyController extends HomeController
 
         $amount = new Amount();
         $amount->setCurrency('USD')
-            ->setTotal($request->get('amount'));
+            ->setTotal($id);
 
         $transaction = new Transaction();
         $transaction->setAmount($amount)
@@ -98,13 +101,15 @@ class AddMoneyController extends HomeController
             ->setPayer($payer)
             ->setRedirectUrls($redirect_urls)
             ->setTransactions(array($transaction));
-        /** dd($payment->create($this->_api_context));exit; **/
+        //dd($payment->create($this->_api_context));
         try {
             $payment->create($this->_api_context);
         } catch (\PayPal\Exception\PPConnectionException $ex) {
+            //dd($ex->getData());
             if (\Config::get('app.debug')) {
                 \Session::put('error', 'Connection timeout');
                 return Redirect::route('addmoney.paywithpaypal');
+
                 /** echo "Exception: " . $ex->getMessage() . PHP_EOL; **/
                 /** $err_data = json_decode($ex->getData(), true); **/
                 /** exit; **/
@@ -145,12 +150,14 @@ class AddMoneyController extends HomeController
             return Redirect::route('addmoney.paywithpaypal');
         }
         $payment = Payment::get($payment_id, $this->_api_context);
+        //dd($payment);
         /** PaymentExecution object includes information necessary **/
         /** to execute a PayPal account payment. **/
         /** The payer_id is added to the request query parameters **/
         /** when the user is redirected from paypal back to your site **/
         $execution = new PaymentExecution();
         $execution->setPayerId(Input::get('PayerID'));
+        //dd($execution);
         /**Execute the payment **/
         $result = $payment->execute($execution, $this->_api_context);
         //dd($result);
@@ -159,17 +166,20 @@ class AddMoneyController extends HomeController
 
             /** it's all right **/
             /** Here Write your database logic like that insert record or value in database if you want **/
-            /*
-             $orderID = session('ordID');;
-             DB::table('orders')
-                 ->where('id', $orderID)
-                 ->update(['payment_ref' => $payment_id]);
- */
+            //dd($payment_id);
+
+
+            $orderID = session('ordID');
+            DB::table('orders')
+                ->where('order_id', $orderID)
+                ->update(['payment_ref' => $payment_id]);
+
+            Cart::destroy();    //deleting the cart
             \Session::put('pav_success', 'Payment success');
             return Redirect::route('user.getCart');
         }
-        \Session::put('error', 'Payment failed');
+        \Session::put('pav_error', 'Payment failed');
 
-        return Redirect::route('addmoney.paywithpaypal');
+        return Redirect::route('user.getCart');
     }
 }

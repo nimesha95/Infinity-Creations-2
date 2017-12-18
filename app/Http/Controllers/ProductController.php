@@ -204,12 +204,13 @@ class ProductController extends Controller
             DB::table('orders')
                 ->where('order_id', $ordID)
                 ->update(['finalized' => 1]);
-            Cart::destroy();    //deleting the cart
+
 
             if ($payment_method = "paypal") {
                 return redirect()->route('addmoney.paywithpaypal', $subtotal);
             }
 
+            Cart::destroy();    //deleting the cart
             return view('shop.cart');
         }
     }
