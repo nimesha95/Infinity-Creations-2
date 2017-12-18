@@ -1,7 +1,7 @@
 @extends('layouts.master_fluid')
 
 @section('title')
-    Add Items
+    Change Availability
 @endsection
 <style>/* The switch - the box around the slider */
     .switch {

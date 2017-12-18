@@ -95,6 +95,14 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="control-label col-sm-2" for="Availability">Quantity:</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" pattern="\d+.{1,}" id="quantity" title=""
+                                       placeholder="Enter Quantity"
+                                       name="quantity" required="true">
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="control-label col-sm-2" for="image">Images (Max 3 images)</label>
                             <div class="col-sm-6">
                                 <div class="fileinput fileinput-new" data-provides="fileinput">

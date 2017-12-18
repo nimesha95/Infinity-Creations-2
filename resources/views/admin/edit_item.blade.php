@@ -33,7 +33,7 @@
             <div class="row">
                 <div class="col-md-12">
                     @foreach($productQry as $productQry1)
-                        <form class="form-horizontal" action="{{route('admin.editItem')}}" method="post"
+                        <form class="form-horizontal" action="{{route('admin.editItems')}}" method="post"
                               enctype="multipart/form-data">
                             <div class="form-group">
                                 <label class="control-label col-sm-2" for="proid">Product ID:</label>
@@ -77,6 +77,23 @@
                                         <option value="Available" selected>Available</option>
                                         <option value="Not Available">Not Available</option>
                                     </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="Quantity">Remaining Quantity:</label>
+                                <div class="col-sm-2">
+                                    <input type="number" class="form-control" id="quantity" title=""
+                                           placeholder="Remaining Quantity"
+                                           name="quantity" required="true" value="{{$productQry1->quantity}}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="Sold">Sold Quantity:</label>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control" pattern="\d+.{1,}" id="sold quantity"
+                                           title=""
+                                           placeholder="Sold Quantity" required="true" value="{{$productQry1->sold}}"
+                                           readonly>
                                 </div>
                             </div>
                             <div class="form-group">

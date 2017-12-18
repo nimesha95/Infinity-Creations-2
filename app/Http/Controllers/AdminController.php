@@ -33,6 +33,32 @@ class AdminController extends Controller
         return view('admin.change_available', ['items' => $productQry]);
     }
 
+    // xoxoxoxoxo
+    public function getCurrentOrders()
+    {
+        $currOrd = DB::select("select order_id,email,order_obj,total,date from orders");
+        return view('admin.current_orders', ['currOrd' => $currOrd]);
+    }
+
+    public function getOrderHistory()
+    {
+        $orderHist = DB::select("select order_id,email,order_obj,total,date,paid_date from orderhistory");
+        return view('admin.order_history', ['orderHist' => $orderHist]);
+    }
+
+    public function getPendingOrders()
+    {
+        $pendOrd = DB::select("select order_id,email,order_obj,total,date,phone_no from orders WHERE finalized = 1 AND completed = 0");
+        return view('admin.pending_orders', ['pendOrd' => $pendOrd]);
+    }
+
+    public function getItems()
+    {
+        $itemList = DB::select("select pro_id,name,type,availability,quantity from product");
+        return view('admin.item_list', ['itemList' => $itemList]);
+    }
+
+
     public function postEditItem(Request $request)
     {
         //dd($request);
@@ -56,7 +82,7 @@ class AdminController extends Controller
 
     public function getEditItem(Request $request)
     {
-        dd($request);
+        //dd($request);
         session(['AdminEditItem' => 1]);
         $this->validate($request, [
             'pro_id' => 'required | is_proid | min:6 | max:6',
@@ -64,7 +90,10 @@ class AdminController extends Controller
         $pro_id = $request->input('pro_id');
         $productQry = DB::select("select * from product WHERE pro_id='$pro_id'");
         // dd($productQry);
-        return view('admin.edit_item', ['productQry' => $productQry]);
+        if (count($productQry) > 0)
+            return view('admin.edit_item', ['productQry' => $productQry]);
+        else
+            return redirect(route('admin.index'))->with('Err_message', 'Item Not Found...');
     }
 
     public function getAdditems()

@@ -45,8 +45,8 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">Orders <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Current Orders</a></li>
-                        <li><a href="#">Order History</a></li>
+                        <li><a href="{{route('admin.getCurrentOrders')}}">Current Orders</a></li>
+                        <li><a href="{{route('admin.getPendingOrders')}}">Pending Orders</a></li>
                     </ul>
                 </li>
 
@@ -66,6 +66,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="#">Current Day</a></li>
                         <li><a href="#">This Month</a></li>
+                        <li><a href="{{route('admin.getItems')}}">Item List</a></li>
                     </ul>
                 </li>
             </ul>
@@ -224,7 +225,7 @@
     </div>
 </div>
 
-<!-- Edit Item Modal -->
+<!-- Edit Item Modal xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 <div class="modal fade" id="EditItemModal" role="dialog">
     <div class="modal-dialog">
 
