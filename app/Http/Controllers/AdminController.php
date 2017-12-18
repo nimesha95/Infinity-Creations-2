@@ -218,6 +218,29 @@ class AdminController extends Controller
         }
     }
 
+    public function syncEarning()
+    {
+        $sales = DB::select('select date(date) as day,sum(total) as tot from orders group by date(date)');
+
+        $arr = array();
+
+        foreach ($sales as $record) {
+            $temp = [$record->day, $record->tot];
+            array_push($arr, $temp);
+        }
+
+        return response()->json(['msg' => $arr], 200);
+    }
+
+    public function syncData(Request $request)
+    {
+        $recentOrder = DB::select('SELECT count(*) as total FROM orders WHERE DATE(date) = CURDATE();');
+        $recentEarning = DB::select('select date(date) as day,sum(total) as tot from orders group by date(date) ORDER BY day DESC LIMIT 1');
+
+        $arr = [$recentOrder[0]->total, $recentEarning[0]->tot];
+        return response()->json(['msg' => $arr], 200);
+    }
+
     private function getRoleName($var)
     {
         if ($var == 0) {

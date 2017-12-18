@@ -224,6 +224,17 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
             'as' => 'admin.calc_sal'
         ]);
 
+
+        Route::post('/syncNoti', [
+            'uses' => 'AdminController@syncData',
+            'as' => 'sync_noti'
+        ]);
+
+        Route::post('/syncEarning', [
+            'uses' => 'AdminController@syncEarning',
+            'as' => 'sync_earning'
+        ]);
+
     });
 
 });
