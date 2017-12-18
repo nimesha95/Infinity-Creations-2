@@ -213,6 +213,17 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
             'as' => 'admin.getPendingOrders'
         ]);
 
+
+        // xoxoxoxo
+        Route::post('/view_sal', [
+            'uses' => 'AdminController@salaryCalc',
+            'as' => 'admin.view_sal'
+        ]);
+        Route::get('/calc_sal/{id}', [
+            'uses' => 'AdminController@getSalary',
+            'as' => 'admin.calc_sal'
+        ]);
+
     });
 
 });

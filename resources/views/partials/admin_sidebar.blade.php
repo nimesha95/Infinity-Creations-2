@@ -5,9 +5,9 @@
             <small><b>MANAGEMENT</b></small>
         </h5>
         <ul class="nav nav-pills nav-stacked">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">Add Items</a></li>
-            <li><a href="#">Current Orders</a></li>
+            <li class="active"><a href="{{route('admin.index')}}">Home</a></li>
+            <li><a href="{{route('admin.additems')}}">Add Items</a></li>
+            <li><a href="{{route('admin.getCurrentOrders')}}">Current Orders</a></li>
         </ul>
     </div>
 </div>

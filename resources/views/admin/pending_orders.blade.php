@@ -30,7 +30,11 @@
                         <tr>
                             <td>{{$row->order_id}}</td>
                             <td>{{$row->email}}</td>
-                            <td>{{$row->order_obj}}</td>
+                            <td>
+                                @foreach($row->order_obj as $item)
+                                    <li>{{$item->name}}</li>
+                                @endforeach
+                            </td>
                             <td>{{$row->total}}</td>
                             <td>{{$row->date}}</td>
                             <td>{{$row->phone_no}}</td>

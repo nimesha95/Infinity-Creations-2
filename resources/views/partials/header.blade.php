@@ -107,114 +107,114 @@ _________________________________________________________ -->
                                         <ul>
                                             <li><a href="{{route('product.custom_order')}}">T-Flex Banners</a>
                                             </li>
-                                            <li><a href="category.html">PVC Stickers</a>
+                                            <li><a href="{{route('product.custom_order')}}">PVC Stickers</a>
                                             </li>
-                                            <li><a href="category.html">REverse Printing</a>
+                                            <li><a href="{{route('product.custom_order')}}">REverse Printing</a>
                                             </li>
-                                            <li><a href="category.html">Sign Boards</a>
+                                            <li><a href="{{route('product.custom_order')}}">Sign Boards</a>
                                             </li>
-                                            <li><a href="category.html">Dealer Boards</a>
+                                            <li><a href="{{route('product.custom_order')}}">Dealer Boards</a>
                                             </li>
-                                            <li><a href="category.html">Fabric Printing</a>
+                                            <li><a href="{{route('product.custom_order')}}">Fabric Printing</a>
                                             </li>
                                         </ul>
                                     </div>
                                     <div class="col-sm-2">
                                         <h5>Mug Printing</h5>
                                         <ul>
-                                            <li><a href="category.html">Normal Mugs</a>
+                                            <li><a href="{{route('product.custom_order')}}">Normal Mugs</a>
                                             </li>
-                                            <li><a href="category.html">Radium Mugs</a>
+                                            <li><a href="{{route('product.custom_order')}}">Radium Mugs</a>
                                             </li>
-                                            <li><a href="category.html">Magic Mugs</a>
+                                            <li><a href="{{route('product.custom_order')}}">Magic Mugs</a>
                                             </li>
-                                            <li><a href="category.html">Glass Magic Mugs</a>
+                                            <li><a href="{{route('product.custom_order')}}">Glass Magic Mugs</a>
                                             </li>
-                                            <li><a href="category.html">Heart Magic Mugs</a>
+                                            <li><a href="{{route('product.custom_order')}}">Heart Magic Mugs</a>
                                             </li>
-                                            <li><a href="category.html">Pearl Mugs</a>
+                                            <li><a href="{{route('product.custom_order')}}">Pearl Mugs</a>
                                             </li>
-                                            <li><a href="category.html">Steel Mugs</a>
+                                            <li><a href="{{route('product.custom_order')}}">Steel Mugs</a>
                                             </li>
-                                            <li><a href="category.html">Other Mugs</a>
+                                            <li><a href="{{route('product.custom_order')}}">Other Mugs</a>
                                             </li>
                                         </ul>
                                     </div>
                                     <div class="col-sm-2">
                                         <h5>Laser Printing</h5>
                                         <ul>
-                                            <li><a href="category.html">Prinouts</a>
+                                            <li><a href="{{route('product.custom_order')}}">Prinouts</a>
                                             </li>
-                                            <li><a href="category.html">Photocopy</a>
+                                            <li><a href="{{route('product.custom_order')}}">Photocopy</a>
                                             </li>
-                                            <li><a href="category.html">Certificates</a>
+                                            <li><a href="{{route('product.custom_order')}}">Certificates</a>
                                             </li>
-                                            <li><a href="category.html">Booklets</a>
+                                            <li><a href="{{route('product.custom_order')}}">Booklets</a>
                                             </li>
-                                            <li><a href="category.html">Leaflets</a>
+                                            <li><a href="{{route('product.custom_order')}}">Leaflets</a>
                                             </li>
-                                            <li><a href="category.html">Visiting Cards</a>
+                                            <li><a href="{{route('product.custom_order')}}">Visiting Cards</a>
                                             </li>
-                                            <li><a href="category.html">Stickers</a>
+                                            <li><a href="{{route('product.custom_order')}}">Stickers</a>
                                             </li>
-                                            <li><a href="category.html">Labels</a>
+                                            <li><a href="{{route('product.custom_order')}}">Labels</a>
                                             </li>
-                                            <li><a href="category.html">Other Laser Printings</a>
+                                            <li><a href="{{route('product.custom_order')}}">Other Laser Printings</a>
                                             </li>
                                         </ul>
                                     </div>
                                     <div class="col-sm-2">
                                         <h5>Creative Designing</h5>
                                         <ul>
-                                            <li><a href="category.html">Leaflets</a>
+                                            <li><a href="{{route('product.custom_order')}}">Leaflets</a>
                                             </li>
-                                            <li><a href="category.html">Posters</a>
+                                            <li><a href="{{route('product.custom_order')}}">Posters</a>
                                             </li>
-                                            <li><a href="category.html">Banners</a>
+                                            <li><a href="{{route('product.custom_order')}}">Banners</a>
                                             </li>
-                                            <li><a href="category.html">Booklets</a>
+                                            <li><a href="{{route('product.custom_order')}}">Booklets</a>
                                             </li>
-                                            <li><a href="category.html">Applications</a>
+                                            <li><a href="{{route('product.custom_order')}}">Applications</a>
                                             </li>
-                                            <li><a href="category.html">ID Cards</a>
+                                            <li><a href="{{route('product.custom_order')}}">ID Cards</a>
                                             </li>
-                                            <li><a href="category.html">Mugs</a>
+                                            <li><a href="{{route('product.custom_order')}}">Mugs</a>
                                             </li>
-                                            <li><a href="category.html">Caladers</a>
+                                            <li><a href="{{route('product.custom_order')}}">Caladers</a>
                                             </li>
-                                            <li><a href="category.html">Latterheads</a>
+                                            <li><a href="{{route('product.custom_order')}}">Latterheads</a>
                                             </li>
-                                            <li><a href="category.html">Other</a>
+                                            <li><a href="{{route('product.custom_order')}}">Other</a>
                                             </li>
                                         </ul>
                                     </div>
                                     <div class="col-sm-2">
                                         <h5>Web Designing</h5>
                                         <ul>
-                                            <li><a href="category.html">Planning</a>
+                                            <li><a href="{{route('product.custom_order')}}">Planning</a>
                                             </li>
-                                            <li><a href="category.html">Designing</a>
+                                            <li><a href="{{route('product.custom_order')}}">Designing</a>
                                             </li>
-                                            <li><a href="category.html">Domain Registration</a>
+                                            <li><a href="{{route('product.custom_order')}}">Domain Registration</a>
                                             </li>
-                                            <li><a href="category.html">Host</a>
+                                            <li><a href="{{route('product.custom_order')}}">Host</a>
                                             </li>
-                                            <li><a href="category.html">Update</a>
+                                            <li><a href="{{route('product.custom_order')}}">Update</a>
                                             </li>
                                         </ul>
                                     </div>
                                     <div class="col-sm-2">
                                         <h5>Photo & Video Editing</h5>
                                         <ul>
-                                            <li><a href="category.html">Photography</a>
+                                            <li><a href="{{route('product.custom_order')}}">Photography</a>
                                             </li>
-                                            <li><a href="category.html">Poto Editing</a>
+                                            <li><a href="{{route('product.custom_order')}}">Poto Editing</a>
                                             </li>
-                                            <li><a href="category.html">Event Management</a>
+                                            <li><a href="{{route('product.custom_order')}}">Event Management</a>
                                             </li>
-                                            <li><a href="category.html">Video Albums</a>
+                                            <li><a href="{{route('product.custom_order')}}">Video Albums</a>
                                             </li>
-                                            <li><a href="category.html">Others</a>
+                                            <li><a href="{{route('product.custom_order')}}">Others</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -225,13 +225,6 @@ _________________________________________________________ -->
                         </li>
                     </ul>
                 </li>
-
-                <li><a href="#">Projects</a>
-                </li>
-                <li>
-                    <a href="#">About</a>
-                </li>
-
                 <li class="dropdown yamm-fw">
                     <a href="{{route('product.contact')}}">Contact US</a>
                 </li>

@@ -56,7 +56,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="#">Track Expenses</a></li>
                         <li><a href="#">Track Revenues</a></li>
-                        <li><a href="#">Calculate Salary</a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#SalaryModal">Calculate Salary</a></li>
                     </ul>
                 </li>
 
@@ -72,10 +72,6 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">
-                        <i class="fa fa-shopping-cart" aria-hidden="true"></i> Notification icon
-                    </a>
-                </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false"><i class="fa fa-user-circle-o" aria-hidden="true"></i>
@@ -305,6 +301,57 @@
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="pro_id" placeholder="Enter Product ID"
                                    name="pro_id">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </div>
+                    </div>
+                    {{ csrf_field() }}
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Salary Modal -->
+<div class="modal fade" id="SalaryModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Calculate Salary</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" method="post" action="{{route('admin.view_sal')}}">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="type">Type:</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" id="role1" name="role1">
+                                <option value="0">Adminstrator</option>
+                                <option value="2">Employee</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="begin_date">Begin Date:</label>
+                        <div class="col-sm-10">
+                            <input type="date" class="form-control" id="begin_date" placeholder="Enter Begin Date"
+                                   name="begin_date">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="end_date">End Date:</label>
+                        <div class="col-sm-10">
+                            <input type="date" class="form-control" id="end_date" placeholder="Enter End Date"
+                                   name="end_date">
                         </div>
                     </div>
                     <div class="form-group">

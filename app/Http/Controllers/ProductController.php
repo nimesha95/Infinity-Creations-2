@@ -206,7 +206,7 @@ class ProductController extends Controller
                 ->update(['finalized' => 1]);
 
 
-            if ($payment_method = "paypal") {
+            if ($payment_method == "paypal") {
                 return redirect()->route('addmoney.paywithpaypal', $subtotal);
             }
 
