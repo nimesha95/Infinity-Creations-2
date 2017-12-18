@@ -83,8 +83,7 @@
                                             to Payment</a>
                                     </div>
                                     <div class="pull-right">
-                                        <button type="submit" class="btn btn-primary">Continue to Delivery
-                                            Method<i
+                                        <button type="submit" class="btn btn-primary">Make My Order<i
                                                     class="fa fa-chevron-right"></i></button>
                                     <!--
                                         <a href="{{ url('/user/checkout/5') }}" class="btn btn-primary">Confirm Order<i

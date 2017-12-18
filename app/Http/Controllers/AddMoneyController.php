@@ -59,8 +59,13 @@ class AddMoneyController extends HomeController
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function postPaymentWithpaypal(Request $request)
+    public function postPaymentWithpaypal(Request $request, $id)
     {
+        //dd($id);
+        $num = $id;
+        $int = (int)$num;
+        $id = (float)$num;
+
         $payer = new Payer();
         $payer->setPaymentMethod('paypal');
 
@@ -154,9 +159,14 @@ class AddMoneyController extends HomeController
 
             /** it's all right **/
             /** Here Write your database logic like that insert record or value in database if you want **/
-
-            \Session::put('success', 'Payment success');
-            return Redirect::route('addmoney.paywithpaypal');
+            /*
+             $orderID = session('ordID');;
+             DB::table('orders')
+                 ->where('id', $orderID)
+                 ->update(['payment_ref' => $payment_id]);
+ */
+            \Session::put('pav_success', 'Payment success');
+            return Redirect::route('user.getCart');
         }
         \Session::put('error', 'Payment failed');
 

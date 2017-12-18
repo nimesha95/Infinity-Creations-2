@@ -47,16 +47,11 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <label for="firstname">Firstname</label>
+                                                <label for="firstname">Name</label>
                                                 <input type="text" class="form-control" name="firstname" id="firstname">
                                             </div>
                                         </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label for="lastname">Lastname</label>
-                                                <input type="text" class="form-control" name="lastname" id="lastname">
-                                            </div>
-                                        </div>
+                                        <div class="col-sm-6"></div>
                                     </div>
                                     <!-- /.row -->
 
@@ -64,13 +59,13 @@
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label for="company">Address</label>
-                                                <input type="text" class="form-control" name="addr" id="addr">
+                                                <input type="text" class="form-control" name="addr_line1" id="addr">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label for="street">Street</label>
-                                                <input type="text" class="form-control" name="street" id="street">
+                                                <input type="text" class="form-control" name="addr_line2" id="street">
                                             </div>
                                         </div>
                                     </div>
@@ -80,20 +75,33 @@
                                         <div class="col-sm-6 col-md-3">
                                             <div class="form-group">
                                                 <label for="city">City</label>
-                                                <input type="text" class="form-control" name="city" id="city">
+                                                <input type="text" class="form-control" name="addr_city" id="city">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label for="phone">Telephone</label>
-                                                <input type="text" class="form-control" name="phone" id="phone">
+                                                <input type="text" class="form-control" name="phone_no" id="phone">
                                             </div>
                                         </div>
 
                                     </div>
                                     <!-- /.row -->
                                 </div>
+                                <div class="row" id="current_addr">
+                                    <div class="col-sm-2">Your Current Address:</div>
+                                    <div class="col-sm-4">
+                                        <div class="panel panel-default">
+                                            <div class="panel-body">
+                                                {{$addr->addr_line1}}<br>
+                                                {{$addr->addr_line2}}<br>
+                                                {{$addr->addr_city}}<br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+
 
                             <div class="box-footer">
                                 <div class="pull-left">

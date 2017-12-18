@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Orders;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
@@ -114,7 +115,7 @@ class ProductController extends Controller
     {
         //dd($id);
         if ($id == 1) {
-            return view('shop.checkout_addr');
+            return view('shop.checkout_addr', ['addr' => Auth::user()]);   //returns address info of the current logged on user
         } elseif ($id == 2) {
             return view('shop.checkout_delivery');
         } elseif ($id == 3) {
@@ -145,20 +146,74 @@ class ProductController extends Controller
         if ($id == 1) {
             //dd($request);
             return view('shop.checkout_addr');
-        } elseif ($id == 2) {
+        } elseif ($id == 2) {   //addr info
             //dd($request);
+            $order = new Order;
+            $nextOrderID = $order->getNextOrdid();
+            session(['ordID' => $nextOrderID]);
+            $order->order_id = $nextOrderID;
+            $order->email = Auth::user()->email;
+
+            if ($request->addr_sel == 1) {
+                $order->addr_line1 = Auth::user()->addr_line1;
+                $order->addr_line2 = Auth::user()->addr_line2;
+                $order->addr_city = Auth::user()->addr_city;
+                $order->phone_no = Auth::user()->phone_no;
+            } elseif ($request->addr_sel == 2) {
+                $order->addr_line1 = $request->addr_line1;
+                $order->addr_line2 = $request->addr_line2;
+                $order->addr_city = $request->addr_city;
+                $order->phone_no = $request->phone_no;
+            }
+
+            $content = Cart::content();
+            $serializedContent = serialize($content);   //convert the array into a string
+
+            $order->order_obj = $serializedContent;
+            $order->total = Cart::subtotal();
+
+            $order->save();
+            //dd($order);
+
             return view('shop.checkout_delivery');
-        } elseif ($id == 3) {
-            //dd($request);
+        } elseif ($id == 3) {   //delivery info
+            $ordID = session('ordID');
+
+            DB::table('orders')
+                ->where('order_id', $ordID)
+                ->update(['delivery_method' => $request->delivery]);
+
             return view('shop.checkout_payment');
-        } elseif ($id == 4) {
-            // dd($request);
+        } elseif ($id == 4) {   //payment info
+            //dd($request);
+            $payment_method = $request->payment;
+            session(['payment' => $payment_method]);
+
+            $ordID = session('ordID');
+
+            DB::table('orders')
+                ->where('order_id', $ordID)
+                ->update(['payment_method' => $payment_method]);
+
             return view('shop.checkout_review');
         } elseif ($id == 5) {
-            //dd($request);
+            $ordID = session('ordID');
+            $payment_method = session('payment');
+            $subtotal = Cart::subtotal();
+
+            DB::table('orders')
+                ->where('order_id', $ordID)
+                ->update(['finalized' => 1]);
+            Cart::destroy();    //deleting the cart
+
+            if ($payment_method = "paypal") {
+                return redirect()->route('addmoney.paywithpaypal', $subtotal);
+            }
+
             return view('shop.cart');
         }
     }
+
 
     private function getOrderType($id)
     {
