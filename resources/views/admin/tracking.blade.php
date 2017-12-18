@@ -1,0 +1,20 @@
+@extends('layouts.master_fluid')
+
+@section('header')
+    @include('partials.admin_header')
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtKgASFbXNafDy42XFoFzoN77Qnr-8HmE&callback=initialize">
+    </script>
+@endsection
+
+@section('content')
+
+    <div id="map" style="height: 400px; width: 100%;"></div>
+
+@endsection
+
+@section('scripts')
+
+    <script src="https://www.gstatic.com/firebasejs/4.6.1/firebase.js"></script>
+    <script src="{{URL::to('js/my/tracking.js')}}"></script>
+@endsection

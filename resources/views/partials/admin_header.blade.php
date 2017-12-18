@@ -57,6 +57,7 @@
                         <li><a href="#">Track Expenses</a></li>
                         <li><a href="#">Track Revenues</a></li>
                         <li><a href="#" data-toggle="modal" data-target="#SalaryModal">Calculate Salary</a></li>
+                        <li><a href="#">Track Delivery Person</a></li>
                     </ul>
                 </li>
 

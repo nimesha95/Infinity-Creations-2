@@ -91,8 +91,8 @@
             </div>
             <div class="row"><h3>Income Fluctuation</h3></div>
             <div class="row">
-                <div class="col-md-12">
-                    <div id="area-chart" style="min-height: 250px;"></div>
+                <div class="col-md-12 img-rounded">
+                    <div id="area-chart" style="min-height: 250px; outline: 3px solid dodgerblue;"></div>
                 </div>
             </div>
         </div>

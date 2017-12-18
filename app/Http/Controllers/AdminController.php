@@ -54,6 +54,11 @@ class AdminController extends Controller
         return view('admin.order_history', ['orderHist' => $orderHist]);
     }
 
+    public function getTrack()
+    {
+        return view('admin.tracking');
+    }
+
     public function getPendingOrders()
     {
         $pendOrd = DB::select("select order_id,email,order_obj,total,date,phone_no from orders WHERE finalized = 1 AND completed = 0");

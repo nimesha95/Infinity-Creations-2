@@ -31,6 +31,11 @@ Route::get('/xyz', [
     'as' => 'product.indexX'
 ]);
 
+Route::get('/track', [
+    'uses' => 'AdminController@getTrack',
+    'as' => 'admin.getTrack'
+]);
+
 Route::get('/product/{id}', [
     'uses' => 'ProductController@showItem',
     'as' => 'product.show'
