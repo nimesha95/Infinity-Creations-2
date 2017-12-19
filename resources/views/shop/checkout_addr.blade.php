@@ -48,7 +48,8 @@
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label for="firstname">Name</label>
-                                                <input type="text" class="form-control" name="firstname" id="firstname">
+                                                <input type="text" class="form-control" name="firstname" id="firstname"
+                                                       value=" " required>
                                             </div>
                                         </div>
                                         <div class="col-sm-6"></div>
@@ -59,13 +60,15 @@
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label for="company">Address</label>
-                                                <input type="text" class="form-control" name="addr_line1" id="addr">
+                                                <input type="text" class="form-control" name="addr_line1" id="addr"
+                                                       value=" " required>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label for="street">Street</label>
-                                                <input type="text" class="form-control" name="addr_line2" id="street">
+                                                <input type="text" class="form-control" name="addr_line2" id="street"
+                                                       value=" " required>
                                             </div>
                                         </div>
                                     </div>
@@ -75,16 +78,17 @@
                                         <div class="col-sm-6 col-md-3">
                                             <div class="form-group">
                                                 <label for="city">City</label>
-                                                <input type="text" class="form-control" name="addr_city" id="city">
+                                                <input type="text" class="form-control" name="addr_city" id="city"
+                                                       value=" " required>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label for="phone">Telephone</label>
-                                                <input type="text" class="form-control" name="phone_no" id="phone">
+                                                <input type="text" class="form-control" name="phone_no" id="phone"
+                                                       value=" " required>
                                             </div>
                                         </div>
-
                                     </div>
                                     <!-- /.row -->
                                 </div>

@@ -11,6 +11,8 @@ use \Cart as Cart;
 use Auth;
 use App\Order;
 use App\Custom_orders;
+use App\Mail\OrderMade;
+use Illuminate\Support\Facades\Mail;
 
 class ProductController extends Controller
 {
@@ -211,6 +213,7 @@ class ProductController extends Controller
             }
 
             Cart::destroy();    //deleting the cart
+            Mail::to(Auth::user()->email)->send(New OrderMade());
             return view('shop.cart');
         }
     }

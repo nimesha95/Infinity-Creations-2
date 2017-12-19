@@ -404,5 +404,41 @@ class AdminController extends Controller
 
     }
 
+    public function viewExpense(Request $request)
+    {
+        $date_from = $request->date_from;
+//        dd($date_from);
+        $date_to = $request->date_to;
+
+        $data = DB::table('expenditure')
+//            ->where(['date','>=',$date_from],['date','<=',$date_to])
+            ->select('*')
+            ->get();
+//        dd(sizeof($data->toArray()));
+        $array2 = [];
+        for ($i = 0; $i < sizeof($data->toArray()); $i++) {
+            $id = $data->pluck('id')->toArray()[$i];
+//            dd($id);
+            $type = $data->pluck('type')->toArray()[$i];
+            $remarks = $data->pluck('remarks')->toArray()[$i];
+            $total = $data->pluck('total')->toArray()[$i];
+            $date = $data->pluck('date')->toArray()[$i];
+//            dd($date);
+
+            if (((int)$date >= (int)$date_from) && ((int)$date <= (int)$date_to)) {
+                $array2[] = array('id' => $id, 'type' => $type, 'total' => $total, 'remarks' => $remarks);
+            }
+//            dd($array2);
+        }
+//        dd($array2);
+
+        if ($array2) {
+            // dd("here");
+            return view('admin.view_expense', ['array2' => $array2]);
+        } else {
+            return view('admin.index')->with('No results found!');
+        }
+    }
+
 
 }

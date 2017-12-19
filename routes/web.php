@@ -250,6 +250,16 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
             'as' => 'admin.add_expense1'
         ]);
 
+        Route::get('/view_expense', [
+            'uses' => 'AdminController@viewExpense',
+            'as' => 'admin.view_expense'
+        ]);
+
+        Route::post('/view_expense', [
+            'uses' => 'AdminController@viewExpense',
+            'as' => 'admin.view_expense'
+        ]);
+
     });
 
 });
