@@ -240,6 +240,16 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
             'as' => 'sync_earning'
         ]);
 
+        Route::get('/add_expense', [
+            'uses' => 'AdminController@getAddExpense',
+            'as' => 'admin.add_expense'
+        ]);
+
+        Route::post('/post_add_expense', [
+            'uses' => 'AdminController@postAddExpense',
+            'as' => 'admin.add_expense1'
+        ]);
+
     });
 
 });

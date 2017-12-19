@@ -55,6 +55,7 @@
                        aria-expanded="false">Office <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">Track Expenses</a></li>
+                        <li><a href="{{route('admin.add_expense')}}">Add Expense</a></li>
                         <li><a href="#">Track Revenues</a></li>
                         <li><a href="#" data-toggle="modal" data-target="#SalaryModal">Calculate Salary</a></li>
                         <li><a href="#">Track Delivery Person</a></li>

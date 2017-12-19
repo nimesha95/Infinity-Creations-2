@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use App\Item_info;
+use App\Expenditure;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Carbon\Carbon;
 
 
 class AdminController extends Controller
@@ -317,6 +319,7 @@ class AdminController extends Controller
 //
 //            $arr[] = array($total_sal);
 //        }
+        $array2 = [];
         for ($i = 0; $i < sizeof($data->toArray()); $i++) {
             $id = $data->pluck('emp_id')->toArray()[$i];
             $first = $data->pluck('first_name')->toArray()[$i];
@@ -333,7 +336,7 @@ class AdminController extends Controller
         if ($array2) {
             return view('admin.salary', ['array2' => $array2]);
         } else {
-            return view('admin.salary')->with('No results found!');
+            return view('admin.index')->with('No results found!');
         }
     }
 
@@ -376,6 +379,29 @@ class AdminController extends Controller
         } else {
             return view('admin.total_sal')->with('No results found!');
         }
+    }
+
+    public function getAddExpense()
+    {
+        return view('admin.expense');
+    }
+
+    public function postAddExpense(Request $request)
+    {
+        $date = $request->input('date_pick');
+        $type = $request->input('typeSelected');
+        $remarks = $request->input('description');
+        $total = $request->input('currency');
+
+        $expense = new Expenditure();
+        $expense->date = $date;
+        $expense->type = $type;
+        $expense->remarks = $remarks;
+        $expense->total = $total;
+
+        $expense->save();
+        return redirect()->back();
+
     }
 
 
