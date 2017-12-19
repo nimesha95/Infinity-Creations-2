@@ -73,6 +73,15 @@
 
 @endsection
 @section('scripts')
+    <script type="text/javascript">
+        jQuery("#currency").blur(function () {
+            var curency = $('#currency').val();
+            if (curency < 0) {
+                $('#currency').val(1000);
+            }
+            //alert(bla);
+        });
+    </script>
     <script scr="{{URL::to('js/jquery-ui/external/jquery/jquery.js')}}"></script>
     <script scr="{{URL::to('js/jquery-ui/jquery-ui.min.js')}}"></script>
     <script src="{{URL::to('js/my/currency.js')}}"></script>
