@@ -51,7 +51,7 @@
                     <div class="form-group">
                         <label for="total">Total expense</label>
                         <div class="input-group" required="">
-                            <span class="input-group-addon">$</span>
+                            <span class="input-group-addon">LKR</span>
                             <input type="number" value="1000" min="0" step="0.01" data-number-to-fixed="2"
                                    data-number-stepfactor="100" class="form-control currency" name="currency"
                                    id="currency"/>
